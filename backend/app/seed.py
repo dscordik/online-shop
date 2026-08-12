@@ -58,20 +58,21 @@ products_data = [
 def seed_db():
     db = SessionLocal()
 
-    added = 0
-    for item in products_data:
-        if not db.query(Product).filter(Product.title == item['title']).first():
-            product = Product(**item)
-            db.add(product)
-            added+=1
-    db.commit()
+    try:
+        added = 0
+        for item in products_data:
+            if not db.query(Product).filter(Product.title == item['title']).first():
+                product = Product(**item)
+                db.add(product)
+                added+=1
+        db.commit()
 
-    if added:
-        print(f'Добавлено {added} новых товаров')
-    else:
-        print('Новых товаров не найдено, база уже актуальна')
-        
-    db.close()
+        if added:
+            print(f'Добавлено {added} новых товаров')
+        else:
+            print('Новых товаров не найдено, база уже актуальна')
+    finally:
+        db.close()
 
 if __name__ == '__main__':
     seed_db()

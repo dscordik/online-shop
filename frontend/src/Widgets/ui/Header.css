@@ -47,3 +47,17 @@
 .header__clear:hover {
     background-color: #c62828;
 }
+
+.header__open {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 8px;
+    background-color: #1976d2;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.header__open:hover {
+    background-color: #125a9c;
+}

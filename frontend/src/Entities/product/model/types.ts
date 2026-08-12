@@ -8,7 +8,8 @@ export interface Product{
 export interface HeaderProps{
     total_price: number,
     total_count: number,
-    clearCorzina: () => void
+    clearCorzina: () => void,
+    onOpenCart: () => void
 }
 export interface ProductCardProps{
     product:Product,
