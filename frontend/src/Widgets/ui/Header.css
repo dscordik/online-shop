@@ -1,0 +1,49 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 20px 30px;
+    margin-bottom: 30px;
+
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+.header__logo {
+    font-size: 30px;
+    font-weight: 700;
+    color: #222;
+}
+
+.header__cart {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.header__count,
+.header__price {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+}
+
+.header__price {
+    color: #1976d2;
+}
+
+.header__clear {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 8px;
+    background-color: #e53935;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.header__clear:hover {
+    background-color: #c62828;
+}
