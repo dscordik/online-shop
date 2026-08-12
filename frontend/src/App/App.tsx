@@ -1,14 +1,15 @@
 import React, {useEffect, useState} from 'react';
 import './App.css';
-import {Product} from "../Entities/product/model/types";
+import {CartItem, Product} from "../Entities/product/model/types";
 import {Header} from "../Widgets/ui/Header";
 import ProductCard from "../Entities/product/ui/ProductCard";
 import {CartModal} from "../Widgets/ui/CartModal";
 
+
 function App() {
     const [isCartOpen, setIsCartOpen] = useState<boolean>(false)
     const [products, setProducts] = useState<Product[]>([])
-    const [cart, setCart] = useState<Product[]>(() => {
+    const [cart, setCart] = useState<CartItem[]>(() => {
         const saved = localStorage.getItem('cart')
         if (saved !== null) {
             return JSON.parse(saved)
@@ -27,7 +28,16 @@ function App() {
     }, [cart]);
 
      function addCart(product: Product) {
-        setCart([...cart, product])
+         const arr = cart.find((item) => item.id == product.id)
+         if (arr) {
+             setCart(cart.map((item) => {
+                 if (item.id == product.id) {
+                     return {...item, count: item.count + 1}
+                 } else {
+                     return item
+                 }}))
+         } else {
+             setCart([...cart, {...product, count:1}])}
     }
 
     function clearCorzina() {
@@ -42,9 +52,34 @@ function App() {
          setCart(cart.filter((item) => item.id !== id))
     }
 
-    const total_price = cart.reduce((sum, b) => sum + b.price, 0)
+    function addCount(id:number) {
+         setCart(cart.map((item) => {
+             if (item.id === id) {
+                 return {...item, count:item.count + 1}
+             } else {
+                 return item
+             }
+         }))
+    }
 
-    const total_count = cart.length
+    function minusCount(id:number) {
+        const arr = cart.find((item) => item.id === id)
+        if (arr?.count === 1) {
+            removeFromCart(id)
+        } else {
+            setCart(cart.map((item) => {
+                if (item.id === id) {
+                    return {...item, count:item.count - 1}
+                } else {
+                    return item
+                }
+            }))
+        }
+    }
+
+    const total_price = cart.reduce((sum, b) => sum + b.price * b.count, 0)
+
+    const total_count = cart.reduce((sum, b) => sum + b.count,0)
 
     return (
         <div className="catalog">
@@ -54,7 +89,7 @@ function App() {
                 {products.map((product) =>
                     <ProductCard key={product.id} product={product} addCart={addCart}/>)}
             </div>
-            {isCartOpen && (<CartModal cart={cart} onOpenCart={onOpenCart} removeFromCart={removeFromCart}/>)}
+            {isCartOpen && (<CartModal cart={cart} onOpenCart={onOpenCart} removeFromCart={removeFromCart} minusCount={minusCount} addCount={addCount}/>)}
         </div>
     )
 }

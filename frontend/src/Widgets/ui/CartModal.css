@@ -96,3 +96,37 @@
     font-size: 15px;
     margin-top: 40px;
 }
+
+.cart-modal__counter {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 4px;
+}
+
+.cart-modal__counter-btn {
+    width: 26px;
+    height: 26px;
+    border: 1px solid #e0e0e0;
+    background-color: #fff;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #333;
+    transition: background-color 0.2s;
+}
+
+.cart-modal__counter-btn:hover {
+    background-color: #f0f0f0;
+}
+
+.cart-modal__counter-value {
+    font-size: 14px;
+    color: #333;
+    min-width: 40px;
+    text-align: center;
+}

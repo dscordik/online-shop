@@ -15,3 +15,7 @@ export interface ProductCardProps{
     product:Product,
     addCart:(product:Product) => void
 }
+
+export interface CartItem extends Product{
+    count:number
+}
