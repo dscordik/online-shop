@@ -98,6 +98,54 @@ products_data = [
         'image_url': 'https://c.dns-shop.ru/thumb/st1/fit/0/0/996d035512110e62f1702553b5e6db6f/02156f614b858ed01fb49713a4f6135e82e0e9392147eb6caad6a744a8e05e57.png.webp',
         'category': 'Телевизоры'
     },
+    {
+        'title': 'ПК ARDOR GAMING NEO M267',
+        'price': 97999,
+        'image_url': 'https://c.dns-shop.ru/thumb/st1/fit/wm/0/0/fd9fc91adbe14dad7e19eacd1f795dae/f658fd8374ac0657aac229347f09a8ac01367b8e8617897ddf46ccb1ab68c6de.jpg.webp',
+        'category': 'Компьютеры'
+    },
+    {
+        'title': 'Коврик ARDOR GAMING XL Patron Red',
+        'price': 850,
+        'image_url': 'https://c.dns-shop.ru/thumb/st1/fit/wm/0/0/62911c1342f9328b6dd3c4fe32124657/b5ad21dc95e57aaa2e6529884f1ae0c53557a33c99fe688ec5d16650e5ad4b32.jpg.webp',
+        'category': 'Коврики'
+    },
+    {
+        'title': 'Планшет Samsung Galaxy Tab A9+ 5G 128 ГБ',
+        'price': 25299,
+        'image_url': 'https://c.dns-shop.ru/thumb/st1/fit/wm/0/0/3f0172a3785de14df543f53eb518f6cb/962ec3bdd7023bee5ef3210ace60abb98029f1259e81876a499277cd6a015d00.jpg.webp',
+        'category': 'Планшеты'
+    },
+    {
+        'title': 'Ноутбук Apple MacBook Air M5 ',
+        'price': 129999,
+        'image_url': 'https://c.dns-shop.ru/thumb/st1/fit/0/0/26862d637d790729ff4fc4d6e9962959/3d8aa1fc5ab13fc33026235a46f8b322c3ba8c14e5884eb2c758f72216422f3e.png.webp',
+        'category': 'Ноутбуки'
+    },
+    {
+        'title': 'Монитор Xiaomi Curved Gaming Monitor G34WQi',
+        'price': 29199,
+        'image_url': 'https://c.dns-shop.ru/thumb/st1/fit/wm/0/0/210503d5cf54daffc8e5e6e995859154/b38eac32fde4dc0f1e9eed52810ee312b95b2bdedaa9787b5b681ed73dc65b9d.jpg.webp',
+        'category': 'Мониторы'
+    },
+    {
+        'title': 'Робот-пылесос Xiaomi Robot Vacuum X20 Max',
+        'price': 48999,
+        'image_url': 'https://c.dns-shop.ru/thumb/st1/fit/wm/0/0/c53f9091e6ab476715225cde1c9e4529/d5cc83a6d6a9f4bf9ed5615a19a9d27ad40c3e14f81bffb66774e63b2eb179f5.jpg.webp',
+        'category': 'Роботы-пылесосы'
+    },
+    {
+        'title': 'ПК MSI MPG Infinite Z3 X3D 9NVVR7',
+        'price': 452999,
+        'image_url': 'https://c.dns-shop.ru/thumb/st1/fit/wm/0/0/3da2692fc0064a799118a4d299253e9f/3d46055da56a19c46a693659c06e4a08f2560750ef07342509b0258db800d3f2.png.webp',
+        'category': 'Компьютеры'
+    },
+    {
+        'title': 'Ноутбук Gigabyte Gaming A18 PRO DXJ',
+        'price': 224999,
+        'image_url': 'https://c.dns-shop.ru/thumb/st1/fit/wm/0/0/638bf17881dd6a76431b8a0b64fca095/692692fd70c7de67d4a4c0b7e05369c9af371330dcbf7c6c1e422a9b7a074449.jpg.webp',
+        'category': 'Ноутбуки'
+    },
 ]
 
 def seed_db():

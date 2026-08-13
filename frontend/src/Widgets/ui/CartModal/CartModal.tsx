@@ -1,5 +1,5 @@
 import React, {FC} from "react";
-import {CartItem} from "../../Entities/product/model/types";
+import {CartItem} from "../../../Entities/product/model/types";
 import './CartModal.css'
 
 interface CartProps {

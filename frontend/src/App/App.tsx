@@ -1,9 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import './App.css';
 import {CartItem, Product} from "../Entities/product/model/types";
-import {Header} from "../Widgets/ui/Header";
+import {Header} from "../Widgets/ui/Header/Header";
 import ProductCard from "../Entities/product/ui/ProductCard";
-import {CartModal} from "../Widgets/ui/CartModal";
+import {CartModal} from "../Widgets/ui/CartModal/CartModal";
+import {Footer} from "../Widgets/ui/Footer/Footer";
 
 
 function App() {
@@ -97,6 +98,7 @@ function App() {
             </div>
             {isCartOpen && (<CartModal cart={cart} onOpenCart={onOpenCart} removeFromCart={removeFromCart} minusCount={minusCount}
                                        addCount={addCount} total_price={total_price} total_count={total_count} clearCorzina={clearCorzina}/>)}
+            <Footer/>
         </div>
     )
 }
