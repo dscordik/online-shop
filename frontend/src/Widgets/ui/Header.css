@@ -23,29 +23,10 @@
     gap: 20px;
 }
 
-.header__count,
-.header__price {
-    font-size: 18px;
+.header__count {
+    font-size: 15px;
     font-weight: 600;
     color: #333;
-}
-
-.header__price {
-    color: #1976d2;
-}
-
-.header__clear {
-    padding: 8px 16px;
-    border: none;
-    border-radius: 8px;
-    background-color: #e53935;
-    color: white;
-    font-weight: 600;
-    cursor: pointer;
-}
-
-.header__clear:hover {
-    background-color: #c62828;
 }
 
 .header__open {
@@ -60,4 +41,101 @@
 
 .header__open:hover {
     background-color: #125a9c;
+}
+
+.header__search {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+    flex: 1;
+    max-width: 500px;
+    margin: 0 20px;
+}
+
+.header__search-input {
+    flex: 1;
+    padding: 10px 16px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 14px;
+    color: #333;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.header__search-input:focus {
+    border-color: #1976d2;
+}
+
+.header__search-input::placeholder {
+    color: #999;
+}
+.header__category {
+    position: relative;
+}
+
+.header__category-toggle {
+    padding: 10px 16px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    background-color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background-color 0.2s;
+}
+
+.header__category-toggle:hover {
+    background-color: #f0f0f0;
+}
+
+.header__category-list {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    max-width: 300px;
+    padding: 12px;
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+}
+
+.header__category-item {
+    padding: 6px 12px;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    background-color: #f5f5f5;
+    font-size: 13px;
+    color: #333;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background-color 0.2s;
+}
+
+.header__category-item:hover {
+    background-color: #e3f2fd;
+    border-color: #1976d2;
+}
+
+.header__reset {
+    padding: 6px 12px;
+    border: 1px solid #1976d2;
+    border-radius: 6px;
+    background-color: #e3f2fd;
+    color: #1976d2;
+    font-weight: 600;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.header__reset:hover {
+    background-color: #bbdefb;
 }

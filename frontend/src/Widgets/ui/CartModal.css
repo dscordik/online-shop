@@ -130,3 +130,44 @@
     min-width: 40px;
     text-align: center;
 }
+.cart-modal__footer {
+    border-top: 1px solid #eee;
+    padding-top: 16px;
+    margin-top: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.cart-modal__summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cart-modal__total-count {
+    font-size: 14px;
+    color: #666;
+}
+
+.cart-modal__total-price {
+    font-size: 18px;
+    font-weight: 700;
+    color: #333;
+}
+
+.cart-modal__clear {
+    padding: 10px 16px;
+    border: none;
+    border-radius: 8px;
+    background-color: #e53935;
+    color: white;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.cart-modal__clear:hover {
+    background-color: #c62828;
+}

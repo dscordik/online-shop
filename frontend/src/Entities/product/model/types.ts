@@ -6,10 +6,13 @@ export interface Product{
     category: string
 }
 export interface HeaderProps{
-    total_price: number,
     total_count: number,
-    clearCorzina: () => void,
-    onOpenCart: () => void
+    onOpenCart: () => void,
+    searchProducts: string,
+    setSearchProducts: (searchProducts: string) => void,
+    selectCategory: string,
+    setSelectCategory:(selectCategory: string) => void,
+    uniqCategory: string[]
 }
 export interface ProductCardProps{
     product:Product,

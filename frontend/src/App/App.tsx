@@ -7,6 +7,8 @@ import {CartModal} from "../Widgets/ui/CartModal";
 
 
 function App() {
+    const [selectCategory, setSelectCategory] = useState('')
+    const [searchProducts, setSearchProducts] = useState('')
     const [isCartOpen, setIsCartOpen] = useState<boolean>(false)
     const [products, setProducts] = useState<Product[]>([])
     const [cart, setCart] = useState<CartItem[]>(() => {
@@ -28,10 +30,10 @@ function App() {
     }, [cart]);
 
      function addCart(product: Product) {
-         const arr = cart.find((item) => item.id == product.id)
+         const arr = cart.find((item) => item.id === product.id)
          if (arr) {
              setCart(cart.map((item) => {
-                 if (item.id == product.id) {
+                 if (item.id === product.id) {
                      return {...item, count: item.count + 1}
                  } else {
                      return item
@@ -81,15 +83,20 @@ function App() {
 
     const total_count = cart.reduce((sum, b) => sum + b.count,0)
 
+    const uniqCategory = [...new Set(products.map((item) => item.category))]
+
     return (
         <div className="catalog">
-            <Header total_price={total_price} total_count={total_count} clearCorzina={clearCorzina} onOpenCart={() => setIsCartOpen(true)}/>
+            <Header uniqCategory={uniqCategory} selectCategory={selectCategory} setSelectCategory={setSelectCategory} setSearchProducts={setSearchProducts} searchProducts={searchProducts} total_count={total_count} onOpenCart={() => setIsCartOpen(true)}/>
             <h1 className="catalog__title" >Каталог товаров</h1>
             <div className="catalog__grid">
-                {products.map((product) =>
+                {products.filter((item) => item.title.toLowerCase().includes(searchProducts.toLowerCase()) &&
+                    (selectCategory === '' || item.category === selectCategory)
+                ).map((product) =>
                     <ProductCard key={product.id} product={product} addCart={addCart}/>)}
             </div>
-            {isCartOpen && (<CartModal cart={cart} onOpenCart={onOpenCart} removeFromCart={removeFromCart} minusCount={minusCount} addCount={addCount}/>)}
+            {isCartOpen && (<CartModal cart={cart} onOpenCart={onOpenCart} removeFromCart={removeFromCart} minusCount={minusCount}
+                                       addCount={addCount} total_price={total_price} total_count={total_count} clearCorzina={clearCorzina}/>)}
         </div>
     )
 }

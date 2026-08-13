@@ -26,9 +26,6 @@ products_data = [
         'image_url':'https://img.mvideo.ru/product-medias/photos/4253334/94ddcfa6-11d6-4e43-a5b2-893055a500c0.jpg?width=600&fmt=avif',
         'category':'Планшеты'
     },
-
-
-    # Это что снизу я не добавлял
     {
         'title':'Ноутбук MSI Katana 17 HX',
         'price':132499,
@@ -52,6 +49,54 @@ products_data = [
         'price':59999,
         'image_url':'https://c.dns-shop.ru/thumb/st1/fit/320/250/01297f00af506bb52a75d80c4d868ebd/43cc52250c15a6ca552c9fd9ee36bee9a0a3bd7ea2f18c5c58d8f8c8a865def9.jpg.webp',
         'category':'Мониторы'
+    },
+    {
+        'title':'Компьютерное кресло ARDOR GAMING Chaos Guard 400M',
+        'price':9199,
+        'image_url':'https://c.dns-shop.ru/thumb/st1/fit/wm/0/0/af72f3939f21e0bb43f0d5c0215c5a18/5faf7f13be668a272a1f224ba4e6c2a9c3f57fc14a6434649abc493bba80cdff.jpg.webp',
+        'category':'Кресла'
+    },
+    {
+        'title':'Видеокарта MSI GeForce RTX 5080 GAMING TRIO',
+        'price':179999,
+        'image_url':'https://c.dns-shop.ru/thumb/st1/fit/wm/0/0/6044a4d1f6422cebcf6a4e488555545b/813136ae74c9db3e0cbb88a1304281764b0d1b040cd590c3b74e91f4b54e3e2b.jpg.webp',
+        'category':'Видеокарты'
+    },
+    {
+        'title': 'Ноутбук HONOR MagicBook X16 AMD 2025',
+        'price': 64999,
+        'image_url': 'https://c.dns-shop.ru/thumb/st1/fit/wm/0/0/0df24b35b682ecc3afa431eee2fb66e7/a4698552223b040056e94bc7e0831abe155b70a9cd7cb72717cb2d0e394b878b.jpg.webp',
+        'category': 'Ноутбуки'
+    },
+    {
+        'title': 'Телевизор Samsung UE50U8000FUXRU',
+        'price': 43499,
+        'image_url': 'https://c.dns-shop.ru/thumb/st1/fit/0/0/cef8edf9ac179ad529dabd718fb581df/8dda5cbdad7f20f448b351b812e4187ae4ede24b6973fb2d1012f6fca7db74ab.jpg.webp',
+        'category': 'Телевизоры'
+    },
+    {
+        'title':' Samsung Galaxy S25 FE 512 ГБ',
+        'price':58299,
+        'image_url':'https://c.dns-shop.ru/thumb/st1/fit/0/0/eeca890cdb2e040307a60bd2ef48a984/6c581baa45e073d1776c781eb859012169504723c2872d922b2e1d51706318c1.png.webp',
+        'category':'Смартфоны'
+    },
+    {
+        'title':'Apple iPhone 17 Pro 256 ГБ серебристый',
+        'price':126999,
+        'image_url':'https://c.dns-shop.ru/thumb/st1/fit/0/0/25d8e5049f089e018d4d966dca7515df/3f07b1ffa9193a775d83d5a74fa818307037b9e0cf34e51a18ac31304fceefb9.jpg.webp',
+        'category':'Смартфоны'
+    },
+    {
+        'title': 'Apple iPhone 15 128 ГБ голубой',
+        'price': 57999,
+        'image_url': 'https://c.dns-shop.ru/thumb/st1/fit/0/0/5988aa036fd0ebd34e2e947c753b543c/ff16ad29271ef2de28e421c8bb6eaa7cc2a8414377acc218457018f78c4cc4a4.jpg.webp',
+        'category': 'Смартфоны'
+    },
+    {
+        'title': 'Телевизор Xiaomi TV A Pro 32 ',
+        'price': 17199,
+        'image_url': 'https://c.dns-shop.ru/thumb/st1/fit/0/0/996d035512110e62f1702553b5e6db6f/02156f614b858ed01fb49713a4f6135e82e0e9392147eb6caad6a744a8e05e57.png.webp',
+        'category': 'Телевизоры'
     },
 ]
 

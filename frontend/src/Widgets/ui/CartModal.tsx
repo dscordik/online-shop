@@ -7,10 +7,13 @@ interface CartProps {
     onOpenCart: () => void,
     removeFromCart: (id:number) => void,
     addCount: (id:number) => void,
-    minusCount: (id:number) => void
+    minusCount: (id:number) => void,
+    total_price: number,
+    total_count: number,
+    clearCorzina: () => void
 }
 
-export const CartModal:FC<CartProps> = ({cart, onOpenCart, removeFromCart, addCount, minusCount})=> {
+export const CartModal:FC<CartProps> = ({cart, onOpenCart, removeFromCart, addCount, minusCount, total_count, total_price, clearCorzina})=> {
     return (
         <div className="cart-modal">
             <div className="cart-modal__content">
@@ -32,6 +35,13 @@ export const CartModal:FC<CartProps> = ({cart, onOpenCart, removeFromCart, addCo
                             </div>
                             <button className="cart-modal__remove" onClick={() => removeFromCart(item.id)}>Удалить товар</button>
                         </div>))}
+                </div>
+                <div className="cart-modal__footer">
+                    <div className="cart-modal__summary">
+                        <span className="cart-modal__total-count">Товаров: {total_count} шт.</span>
+                        <span className="cart-modal__total-price">Сумма: {total_price} ₽</span>
+                    </div>
+                    <button className="cart-modal__clear" onClick={() => clearCorzina()}>Очистить корзину</button>
                 </div>
             </div>
         </div>
