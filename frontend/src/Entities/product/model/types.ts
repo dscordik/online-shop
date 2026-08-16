@@ -1,3 +1,5 @@
+import {User} from "../../user/model/types";
+
 export interface Product{
     id: number,
     title: string,
@@ -12,7 +14,10 @@ export interface HeaderProps{
     setSearchProducts: (searchProducts: string) => void,
     selectCategory: string,
     setSelectCategory:(selectCategory: string) => void,
-    uniqCategory: string[]
+    uniqCategory: string[],
+    user: User | null,
+    onIsAuthModalOpen:() => void,
+    handleLogout: () => void
 }
 export interface ProductCardProps{
     product:Product,
@@ -22,3 +27,4 @@ export interface ProductCardProps{
 export interface CartItem extends Product{
     count:number
 }
+

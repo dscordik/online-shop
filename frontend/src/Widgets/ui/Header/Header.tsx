@@ -2,7 +2,7 @@ import {HeaderProps} from "../../../Entities/product/model/types";
 import React, {useState} from "react";
 import './Header.css'
 
-export const Header: React.FC<HeaderProps> = ({total_count,onOpenCart, searchProducts, setSearchProducts, uniqCategory, setSelectCategory, selectCategory})=> {
+export const Header: React.FC<HeaderProps> = ({total_count,onOpenCart, searchProducts, setSearchProducts, uniqCategory, setSelectCategory, selectCategory, user, onIsAuthModalOpen, handleLogout})=> {
     const [isCategoryOpen, setIsCategoryOpen] = useState(false)
     return(
         <div className="header">
@@ -20,6 +20,16 @@ export const Header: React.FC<HeaderProps> = ({total_count,onOpenCart, searchPro
                     )}
                 </div>
                 <input placeholder='Введите товар' className="header__search-input" value={searchProducts} onChange={(e) => setSearchProducts(e.target.value)}/>
+            </div>
+            <div className="header__auth">
+                {user !== null ? (
+                    <div className="header__auth__div">
+                        <span className="header__auth-email">{user.email}</span>
+                        <button className="header__auth-logout" onClick={() => handleLogout()}>Выйти</button>
+                    </div>
+                ) : (
+                    <button className="header__auth-login" onClick={() => onIsAuthModalOpen()}>Войти</button>
+                )}
             </div>
             <div className="header__cart">
                 <span className="header__count">Товаров: {total_count} шт.</span>
