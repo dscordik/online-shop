@@ -9,6 +9,8 @@ import {User} from "../Entities/user/model/types";
 import {AuthModal} from "../Widgets/ui/AuthModal/AuthModal";
 import {clearTokens, getAccessToken} from "../Entities/user/model/tokenStorage";
 import {fetchCurrentUser} from "../Entities/user/model/authApi";
+import {Route, Routes} from "react-router";
+import {ProfilePage} from "../Pages/ProfilePage/ui/ProfilePage";
 
 
 function App() {
@@ -120,14 +122,24 @@ function App() {
         <div className="catalog">
             <Header user={user} handleLogout={handleLogout} onIsAuthModalOpen={() => setIsAuthModalOpen(true)} uniqCategory={uniqCategory}
                     selectCategory={selectCategory} setSelectCategory={setSelectCategory} setSearchProducts={setSearchProducts}
-                    searchProducts={searchProducts} total_count={total_count} onOpenCart={() => setIsCartOpen(true)}/>
-            <h1 className="catalog__title" >Каталог товаров</h1>
-            <div className="catalog__grid">
-                {products.filter((item) => item.title.toLowerCase().includes(searchProducts.toLowerCase()) &&
-                    (selectCategory === '' || item.category === selectCategory)
-                ).map((product) =>
-                    <ProductCard key={product.id} product={product} addCart={addCart}/>)}
-            </div>
+                    searchProducts={searchProducts} total_count={total_count} onOpenCart={() => setIsCartOpen(true)}
+
+            />
+            <Routes>
+                <Route path='/' element={(
+                    <>
+                        <h1 className="catalog__title" >Каталог товаров</h1>
+                        <div className="catalog__grid">
+                            {products.filter((item) => item.title.toLowerCase().includes(searchProducts.toLowerCase()) &&
+                                (selectCategory === '' || item.category === selectCategory)
+                            ).map((product) =>
+                                <ProductCard key={product.id} product={product} addCart={addCart}/>)}
+                        </div>
+                    </>
+                )}>
+                </Route>
+                <Route path='/profile' element={<ProfilePage handleLogout={handleLogout} handleAuthSuccess={handleAuthSuccess} user={user}/>}></Route>
+            </Routes>
             {isCartOpen && (<CartModal cart={cart} onOpenCart={onOpenCart} removeFromCart={removeFromCart} minusCount={minusCount}
                                        addCount={addCount} total_price={total_price} total_count={total_count} clearCorzina={clearCorzina}/>)}
             {isAuthModalOpen && (<AuthModal onClose={() => setIsAuthModalOpen(false)} onAuthSuccess={handleAuthSuccess}/>)}

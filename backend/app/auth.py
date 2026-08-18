@@ -1,3 +1,4 @@
+import bcrypt
 from fastapi import APIRouter
 from fastapi.params import Depends
 from fastapi.security import OAuth2PasswordBearer
@@ -6,7 +7,7 @@ from starlette import status
 from starlette.exceptions import HTTPException
 from app.database import get_db
 from app.models import User
-from app.schemas import UserCreate, UserOut, Token, UserLogin, RefreshRequest
+from app.schemas import UserCreate, UserOut, Token, UserLogin, RefreshRequest, UserUpdate
 from app.security import hash_password, verify_password, create_access_token, create_refresh_token, decode_token
 
 router = APIRouter(prefix='/api/auth', tags=['auth'])
@@ -63,3 +64,22 @@ def refresh_token(body: RefreshRequest, db:Session = Depends(get_db)):
 @router.get('/me', response_model=UserOut)
 def read_current_user(current_user: User = Depends(get_current_user)):
     return current_user
+
+@router.patch('/me', response_model=UserOut)
+def user_update(body: UserUpdate, user: User = Depends(get_current_user), db: Session = Depends(get_db)):
+    if body.email is not None and body.email != user.email:
+        first_user = db.query(User).filter(User.email == body.email).first()
+        if first_user:
+            raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail='Email занят')
+    if body.new_password:
+        if body.old_password is None:
+            raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail='Укажите текущий пароль')
+        if verify_password(body.old_password, user.hashed_password):
+            user.hashed_password = hash_password(password=body.new_password)
+        else:
+            raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail='Пароли не совпадают')
+    if body.email is not None:
+        user.email = body.email
+    db.commit()
+    db.refresh(user)
+    return user

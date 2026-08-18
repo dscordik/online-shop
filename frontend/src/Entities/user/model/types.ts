@@ -1,7 +1,8 @@
 export interface User{
     id:number,
     email:string,
-    is_active: boolean
+    is_active: boolean,
+    created_at:string
 }
 
 export interface AuthTokens{
@@ -18,4 +19,10 @@ export interface LoginPayload{
 export interface RegisterPayload{
     email:string,
     password:string
+}
+
+export interface UserUpdate{
+    email?:string,
+    old_password?:string
+    new_password?:string
 }

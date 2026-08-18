@@ -152,16 +152,6 @@
     gap: 12px;
 }
 
-.header__auth-email {
-    font-size: 14px;
-    font-weight: 600;
-    color: #333;
-    max-width: 180px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-
 .header__auth-login,
 .header__auth-logout {
     padding: 8px 16px;
@@ -190,4 +180,22 @@
 
 .header__auth-logout:hover {
     background-color: #fdecea;
+}
+
+.header__auth-profile {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    background-color: #f0f5fb;
+    color: #1976d2;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.header__auth-profile:hover {
+    background-color: #dceaf9;
 }

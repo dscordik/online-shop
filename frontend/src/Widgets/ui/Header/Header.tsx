@@ -1,6 +1,7 @@
 import {HeaderProps} from "../../../Entities/product/model/types";
 import React, {useState} from "react";
 import './Header.css'
+import {Link} from "react-router";
 
 export const Header: React.FC<HeaderProps> = ({total_count,onOpenCart, searchProducts, setSearchProducts, uniqCategory, setSelectCategory, selectCategory, user, onIsAuthModalOpen, handleLogout})=> {
     const [isCategoryOpen, setIsCategoryOpen] = useState(false)
@@ -24,7 +25,7 @@ export const Header: React.FC<HeaderProps> = ({total_count,onOpenCart, searchPro
             <div className="header__auth">
                 {user !== null ? (
                     <div className="header__auth__div">
-                        <span className="header__auth-email">{user.email}</span>
+                        <Link to='/profile' className="header__auth-profile">Личный кабинет</Link>
                         <button className="header__auth-logout" onClick={() => handleLogout()}>Выйти</button>
                     </div>
                 ) : (
