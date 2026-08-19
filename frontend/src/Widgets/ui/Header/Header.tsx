@@ -7,7 +7,7 @@ export const Header: React.FC<HeaderProps> = ({total_count,onOpenCart, searchPro
     const [isCategoryOpen, setIsCategoryOpen] = useState(false)
     return(
         <div className="header">
-            <h1 id="catalog" className="header__logo">Misha store</h1>
+            <h1 id="catalog" className="header__logo">Женя пидорас</h1>
             <div className="header__search">
                 <div className="header__category">
                     <button className="header__category-toggle" onClick={() => setIsCategoryOpen(!isCategoryOpen)}>Категории товаров</button>

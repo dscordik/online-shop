@@ -11,6 +11,7 @@ import {clearTokens, getAccessToken} from "../Entities/user/model/tokenStorage";
 import {fetchCurrentUser} from "../Entities/user/model/authApi";
 import {Route, Routes} from "react-router";
 import {ProfilePage} from "../Pages/ProfilePage/ui/ProfilePage";
+import {ProductPage} from "../Pages/ProductPage/ui/ProductPage";
 
 
 function App() {
@@ -139,6 +140,7 @@ function App() {
                 )}>
                 </Route>
                 <Route path='/profile' element={<ProfilePage handleLogout={handleLogout} handleAuthSuccess={handleAuthSuccess} user={user}/>}></Route>
+                <Route path='/product/:id' element={<ProductPage addCart={addCart}/>}></Route>
             </Routes>
             {isCartOpen && (<CartModal cart={cart} onOpenCart={onOpenCart} removeFromCart={removeFromCart} minusCount={minusCount}
                                        addCount={addCount} total_price={total_price} total_count={total_count} clearCorzina={clearCorzina}/>)}

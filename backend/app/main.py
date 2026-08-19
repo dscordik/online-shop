@@ -1,4 +1,6 @@
 from fastapi import FastAPI
+from starlette import status
+from starlette.exceptions import HTTPException
 from starlette.middleware.cors import CORSMiddleware
 from app import models
 from app.database import engine, get_db
@@ -28,3 +30,9 @@ def read_root():
 def get_products(db:Session = Depends(get_db)):
     products = db.query(Product).all()
     return products
+@app.get('/api/products/{product_id}', response_model=ProductSchema)
+def get_product(product_id:int ,db:Session = Depends(get_db)):
+    product = db.query(Product).filter(Product.id == product_id).first()
+    if product is None:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail='Товар не найден')
+    return product
