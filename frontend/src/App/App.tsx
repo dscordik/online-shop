@@ -15,6 +15,7 @@ import {ProductPage} from "../Pages/ProductPage/ui/ProductPage";
 
 
 function App() {
+    const [sortCategories, setSortCategories] = useState<'default' | 'minToBigPrice' | 'bigToMinPrice'>('default')
     const [user, setUser] = useState<User | null>(null)
     const [isAuthModalOpen, setIsAuthModalOpen] = useState<boolean>(false)
     const [selectCategory, setSelectCategory] = useState('')
@@ -118,12 +119,31 @@ function App() {
 
     const uniqCategory = [...new Set(products.map((item) => item.category))]
 
+    const filteredProducts = products.filter((item) => item.title.toLowerCase().includes(searchProducts.toLowerCase()) &&
+        (selectCategory === '' || item.category === selectCategory)
+    )
+    const copyOfFiltered = [...filteredProducts]
+    copyOfFiltered.sort((item1,item2) => {
+        if (sortCategories === 'bigToMinPrice') {
+            return item2.price - item1.price
+        }
+        if (sortCategories === 'minToBigPrice') {
+            return item1.price - item2.price
+        }
+        if (sortCategories === 'default') {
+            return 0
+        }
+        return 0
+    })
+
     console.log(isAuthModalOpen)
+
     return (
         <div className="catalog">
             <Header user={user} handleLogout={handleLogout} onIsAuthModalOpen={() => setIsAuthModalOpen(true)} uniqCategory={uniqCategory}
                     selectCategory={selectCategory} setSelectCategory={setSelectCategory} setSearchProducts={setSearchProducts}
                     searchProducts={searchProducts} total_count={total_count} onOpenCart={() => setIsCartOpen(true)}
+                    sortCategory={sortCategories} setSortcategory={setSortCategories}
 
             />
             <Routes>
@@ -131,9 +151,7 @@ function App() {
                     <>
                         <h1 className="catalog__title" >Каталог товаров</h1>
                         <div className="catalog__grid">
-                            {products.filter((item) => item.title.toLowerCase().includes(searchProducts.toLowerCase()) &&
-                                (selectCategory === '' || item.category === selectCategory)
-                            ).map((product) =>
+                            {copyOfFiltered.map((product) =>
                                 <ProductCard key={product.id} product={product} addCart={addCart}/>)}
                         </div>
                     </>

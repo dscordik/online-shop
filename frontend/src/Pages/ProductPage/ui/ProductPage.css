@@ -89,12 +89,8 @@
 .product-page__price {
     font-size: 32px;
     font-weight: 700;
-    color: #e74c3c;
+    color:  #125a9c;
     margin: 0 0 16px 0;
-}
-
-.product-page__price::after {
-    content: " ₽";
 }
 
 .product-page__category {

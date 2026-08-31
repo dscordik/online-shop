@@ -3,14 +3,14 @@ import React, {useState} from "react";
 import './Header.css'
 import {Link} from "react-router";
 
-export const Header: React.FC<HeaderProps> = ({total_count,onOpenCart, searchProducts, setSearchProducts, uniqCategory, setSelectCategory, selectCategory, user, onIsAuthModalOpen, handleLogout})=> {
+export const Header: React.FC<HeaderProps> = ({total_count,onOpenCart, searchProducts, setSearchProducts, uniqCategory, setSelectCategory, selectCategory, user, onIsAuthModalOpen, handleLogout, sortCategory, setSortcategory})=> {
     const [isCategoryOpen, setIsCategoryOpen] = useState(false)
     return(
         <div className="header">
-            <h1 id="catalog" className="header__logo">Женя пидорас</h1>
+            <h1 id="catalog" className="header__logo">Misha store</h1>
             <div className="header__search">
                 <div className="header__category">
-                    <button className="header__category-toggle" onClick={() => setIsCategoryOpen(!isCategoryOpen)}>Категории товаров</button>
+                    <button className="header__category-toggle" onClick={() => setIsCategoryOpen(!isCategoryOpen)}>Категории</button>
                     {isCategoryOpen && (
                         <div className="header__category-list">
                             <button className="header__reset" onClick={() => {setSelectCategory(''); setIsCategoryOpen(false)}}>Все категории</button>
@@ -19,6 +19,13 @@ export const Header: React.FC<HeaderProps> = ({total_count,onOpenCart, searchPro
                             ))}
                         </div>
                     )}
+                </div>
+                <div className='header__sort'>
+                    <select className='header__sort-select' value={sortCategory} onChange={(e) => setSortcategory(e.target.value as 'default' | 'minToBigPrice' | 'bigToMinPrice')}>
+                        <option value='default'>Без сортировки</option>
+                        <option value='minToBigPrice'>Сначала дешёвые</option>
+                        <option value='bigToMinPrice'>Сначала дорогие</option>
+                    </select>
                 </div>
                 <input placeholder='Введите товар' className="header__search-input" value={searchProducts} onChange={(e) => setSearchProducts(e.target.value)}/>
             </div>

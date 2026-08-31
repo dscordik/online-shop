@@ -17,7 +17,9 @@ export interface HeaderProps{
     uniqCategory: string[],
     user: User | null,
     onIsAuthModalOpen:() => void,
-    handleLogout: () => void
+    handleLogout: () => void,
+    sortCategory: 'default' | 'minToBigPrice' | 'bigToMinPrice' ,
+    setSortcategory:(sortCategory:'default' | 'minToBigPrice' | 'bigToMinPrice' ) => void
 }
 export interface ProductCardProps{
     product:Product,
