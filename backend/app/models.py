@@ -9,6 +9,7 @@ class Product(Base):
     price = Column(Integer)
     image_url = Column(String)
     category = Column(String)
+    description = Column(String)
 
 class User(Base):
     __tablename__ = 'users'

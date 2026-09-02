@@ -5,7 +5,8 @@ export interface Product{
     title: string,
     image_url: string,
     price: number,
-    category: string
+    category: string,
+    description:string
 }
 export interface HeaderProps{
     total_count: number,

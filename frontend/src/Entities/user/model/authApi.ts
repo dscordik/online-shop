@@ -1,6 +1,22 @@
 import {AuthTokens, LoginPayload, RegisterPayload, User, UserUpdate} from "./types";
 import {getAccessToken} from "./tokenStorage";
 
+function extractErrorMessage(errorData: any): string {
+    const detail = errorData?.detail
+
+    if (typeof detail === 'string') {
+        return detail
+    }
+
+    if (Array.isArray(detail)) {
+        return detail
+            .map((item) => item?.msg ?? String(item))
+            .join('; ')
+    }
+
+    return 'Произошла ошибка. Попробуйте ещё раз'
+}
+
 export async function registerUser(payload:RegisterPayload): Promise<User> {
     const res = await fetch('http://localhost:8000/api/auth/register', {
         method:'POST',
@@ -9,7 +25,7 @@ export async function registerUser(payload:RegisterPayload): Promise<User> {
     })
     if (!res.ok) {
         const errorData = await res.json()
-        throw new Error(errorData.detail)
+        throw new Error(extractErrorMessage(errorData))
     } else {
         return await res.json()
     }
@@ -23,7 +39,7 @@ export async function loginUser(payload: LoginPayload): Promise<AuthTokens> {
     })
     if (!res.ok) {
         const errorData = await res.json()
-        throw new Error(errorData.detail)
+        throw new Error(extractErrorMessage(errorData))
     } else {
         return await res.json()
     }
@@ -40,7 +56,7 @@ export async function fetchCurrentUser(): Promise<User>{
     })
     if (!res.ok) {
         const errorData = await res.json()
-        throw new Error(errorData.detail)
+        throw new Error(extractErrorMessage(errorData))
     } else {
         return await res.json()
     }
@@ -58,7 +74,7 @@ export async function userUpdate(user:UserUpdate): Promise<User> {
     })
     if (!res.ok) {
         const errorData = await res.json()
-        throw Error(errorData.detail)
+        throw Error(extractErrorMessage(errorData))
     } else {
         return await res.json()
     }

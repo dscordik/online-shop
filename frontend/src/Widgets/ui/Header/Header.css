@@ -192,7 +192,7 @@
     box-shadow: 0 0 0 3px rgba(25, 118, 210, 0.15);
 }
 
-.header__price-input {
+.header__price-input1 {
     width: 55px;
     padding: 7px 2px;
     border: none;
@@ -205,19 +205,19 @@
     font-family: inherit;
 }
 
-.header__price-input::placeholder {
+.header__price-input1::placeholder {
     color: #aaa;
     font-weight: 400;
     font-size: 12px;
 }
 
-.header__price-input::-webkit-outer-spin-button,
-.header__price-input::-webkit-inner-spin-button {
+.header__price-input1::-webkit-outer-spin-button,
+.header__price-input1::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
 
-.header__price-input {
+.header__price-input1 {
     -moz-appearance: textfield;
 }
 
@@ -340,7 +340,7 @@
         padding: 8px 28px 8px 12px;
     }
 
-    .header__price-input {
+    .header__price-input1 {
         width: 45px;
         font-size: 12px;
     }
@@ -391,7 +391,7 @@
         padding: 4px 6px 4px 10px;
     }
 
-    .header__price-input {
+    .header__price-input1 {
         width: 40px;
         font-size: 12px;
     }
@@ -424,7 +424,7 @@
         background-position: right 8px center;
     }
 
-    .header__price-input {
+    .header__price-input1 {
         width: 35px;
         font-size: 11px;
         padding: 5px 2px;

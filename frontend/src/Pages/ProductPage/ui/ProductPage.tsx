@@ -47,6 +47,7 @@ export const ProductPage:React.FC<ProductPageProps> = ({addCart}) => {
                     <h1 className="product-page__title">{product.title}</h1>
                     <p className="product-page__price">{product.price} Р</p>
                     <p className="product-page__category">Категория: {product.category}</p>
+                    <p className='product-page__description'>{product.description}</p>
                 </div>
                 <button className='product-page__btn' onClick={() => addCart(product)}>Добавить в корзину</button>
             </div>
