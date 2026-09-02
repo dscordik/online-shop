@@ -3,7 +3,10 @@ import React, {useState} from "react";
 import './Header.css'
 import {Link} from "react-router";
 
-export const Header: React.FC<HeaderProps> = ({total_count,onOpenCart, searchProducts, setSearchProducts, uniqCategory, setSelectCategory, selectCategory, user, onIsAuthModalOpen, handleLogout, sortCategory, setSortcategory})=> {
+export const Header: React.FC<HeaderProps> = ({total_count,onOpenCart, searchProducts, setSearchProducts, uniqCategory,
+                                                  setSelectCategory, selectCategory, user, onIsAuthModalOpen, handleLogout,
+                                                  sortCategory, setSortСategory, minPrice, setMinPrice, bigPrice, setBigPrice,
+                                                  resetFilters})=> {
     const [isCategoryOpen, setIsCategoryOpen] = useState(false)
     return(
         <div className="header">
@@ -21,12 +24,18 @@ export const Header: React.FC<HeaderProps> = ({total_count,onOpenCart, searchPro
                     )}
                 </div>
                 <div className='header__sort'>
-                    <select className='header__sort-select' value={sortCategory} onChange={(e) => setSortcategory(e.target.value as 'default' | 'minToBigPrice' | 'bigToMinPrice')}>
+                    <select className='header__sort-select' value={sortCategory} onChange={(e) => setSortСategory(e.target.value as 'default' | 'minToBigPrice' | 'bigToMinPrice' | 'onAlphabet')}>
                         <option value='default'>Без сортировки</option>
                         <option value='minToBigPrice'>Сначала дешёвые</option>
                         <option value='bigToMinPrice'>Сначала дорогие</option>
+                        <option value='onAlphabet'>По алфавиту</option>
                     </select>
                 </div>
+                <div className='header__price-filter'>
+                    <input className='header__price-input1' type='number' placeholder='от' value={minPrice} min={0} onChange={(e) => setMinPrice(e.target.value)}/>
+                    <input className='header__price-input1' type='number' placeholder='до' value={bigPrice} min={0} onChange={(e) => setBigPrice(e.target.value)}/>
+                </div>
+                <button className='header__reset-btn' onClick={() => resetFilters()}>Сбросить фильтры</button>
                 <input placeholder='Введите товар' className="header__search-input" value={searchProducts} onChange={(e) => setSearchProducts(e.target.value)}/>
             </div>
             <div className="header__auth">

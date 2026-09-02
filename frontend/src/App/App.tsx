@@ -15,7 +15,9 @@ import {ProductPage} from "../Pages/ProductPage/ui/ProductPage";
 
 
 function App() {
-    const [sortCategories, setSortCategories] = useState<'default' | 'minToBigPrice' | 'bigToMinPrice'>('default')
+    const [minPrice, setMinPrice] = useState<string>('')
+    const [bigPrice, setBigPrice] = useState<string>('')
+    const [sortCategories, setSortCategories] = useState<'default' | 'minToBigPrice' | 'bigToMinPrice' | 'onAlphabet'>('default')
     const [user, setUser] = useState<User | null>(null)
     const [isAuthModalOpen, setIsAuthModalOpen] = useState<boolean>(false)
     const [selectCategory, setSelectCategory] = useState('')
@@ -52,6 +54,14 @@ function App() {
             TOKENS()
         }
     }, []);
+
+    function resetFilters() {
+        setMinPrice('')
+        setBigPrice('')
+        setSortCategories('default')
+        setSelectCategory('')
+        setSearchProducts('')
+    }
 
     function handleLogout() {
         clearTokens()
@@ -120,7 +130,9 @@ function App() {
     const uniqCategory = [...new Set(products.map((item) => item.category))]
 
     const filteredProducts = products.filter((item) => item.title.toLowerCase().includes(searchProducts.toLowerCase()) &&
-        (selectCategory === '' || item.category === selectCategory)
+        (selectCategory === '' || item.category === selectCategory) &&
+        (minPrice === '' || item.price >= Number(minPrice)) &&
+        (bigPrice === '' || item.price <= Number(bigPrice))
     )
     const copyOfFiltered = [...filteredProducts]
     copyOfFiltered.sort((item1,item2) => {
@@ -130,21 +142,22 @@ function App() {
         if (sortCategories === 'minToBigPrice') {
             return item1.price - item2.price
         }
+        if (sortCategories === 'onAlphabet') {
+            return item1.title.localeCompare(item2.title)
+        }
         if (sortCategories === 'default') {
             return 0
         }
         return 0
     })
 
-    console.log(isAuthModalOpen)
-
     return (
         <div className="catalog">
             <Header user={user} handleLogout={handleLogout} onIsAuthModalOpen={() => setIsAuthModalOpen(true)} uniqCategory={uniqCategory}
                     selectCategory={selectCategory} setSelectCategory={setSelectCategory} setSearchProducts={setSearchProducts}
                     searchProducts={searchProducts} total_count={total_count} onOpenCart={() => setIsCartOpen(true)}
-                    sortCategory={sortCategories} setSortcategory={setSortCategories}
-
+                    sortCategory={sortCategories} setSortСategory={setSortCategories} minPrice={minPrice}
+                    setMinPrice={setMinPrice} bigPrice={bigPrice} setBigPrice={setBigPrice} resetFilters={resetFilters}
             />
             <Routes>
                 <Route path='/' element={(

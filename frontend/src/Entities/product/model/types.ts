@@ -18,8 +18,13 @@ export interface HeaderProps{
     user: User | null,
     onIsAuthModalOpen:() => void,
     handleLogout: () => void,
-    sortCategory: 'default' | 'minToBigPrice' | 'bigToMinPrice' ,
-    setSortcategory:(sortCategory:'default' | 'minToBigPrice' | 'bigToMinPrice' ) => void
+    sortCategory: 'default' | 'minToBigPrice' | 'bigToMinPrice' | 'onAlphabet',
+    setSortСategory:(sortCategory:'default' | 'minToBigPrice' | 'bigToMinPrice' | 'onAlphabet') => void,
+    minPrice: string,
+    setMinPrice: (minPrice: string) => void,
+    bigPrice: string,
+    setBigPrice: (bigPrice: string) => void,
+    resetFilters: () => void
 }
 export interface ProductCardProps{
     product:Product,

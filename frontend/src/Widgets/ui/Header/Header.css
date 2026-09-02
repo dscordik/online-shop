@@ -1,61 +1,42 @@
+/* ===== Блок: шапка ===== */
 .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-
-    padding: 20px 30px;
+    padding: 16px 24px;
     margin-bottom: 30px;
-
     background-color: #ffffff;
     border-radius: 12px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    flex-wrap: wrap;
+    gap: 12px;
 }
 
+/* ===== Логотип ===== */
 .header__logo {
-    font-size: 30px;
+    font-size: 26px;
     font-weight: 700;
     color: #222;
+    flex-shrink: 0;
 }
 
-.header__cart {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-}
-
-.header__count {
-    font-size: 15px;
-    font-weight: 600;
-    color: #333;
-}
-
-.header__open {
-    padding: 8px 16px;
-    border: none;
-    border-radius: 8px;
-    background-color: #1976d2;
-    color: white;
-    font-weight: 600;
-    cursor: pointer;
-}
-
-.header__open:hover {
-    background-color: #125a9c;
-}
-
+/* ===== Блок поиска и фильтров ===== */
 .header__search {
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
     flex: 1;
-    max-width: 500px;
-    margin: 0 20px;
+    max-width: 700px;
+    margin: 0 16px;
+    flex-wrap: wrap;
 }
 
+/* ===== Поле поиска ===== */
 .header__search-input {
     flex: 1;
-    padding: 10px 16px;
+    min-width: 120px;
+    padding: 9px 14px;
     border: 1px solid #e0e0e0;
     border-radius: 8px;
     font-size: 14px;
@@ -71,16 +52,19 @@
 .header__search-input::placeholder {
     color: #999;
 }
+
+/* ===== Категории ===== */
 .header__category {
     position: relative;
+    flex-shrink: 0;
 }
 
 .header__category-toggle {
-    padding: 10px 16px;
+    padding: 9px 14px;
     border: 1px solid #e0e0e0;
     border-radius: 8px;
     background-color: #fff;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 600;
     color: #333;
     cursor: pointer;
@@ -92,13 +76,14 @@
     background-color: #f0f0f0;
 }
 
+/* ===== Выпадающий список категорий ===== */
 .header__category-list {
     position: absolute;
     top: 100%;
     left: 0;
     margin-top: 8px;
     display: grid;
-    grid-template-columns: repeat(2, 1fr);  /* 2 колонки */
+    grid-template-columns: repeat(2, 1fr);
     gap: 4px 16px;
     background: white;
     border-radius: 12px;
@@ -140,25 +125,130 @@
     background-color: #bbdefb;
 }
 
+/* ===== Сортировка ===== */
+.header__sort {
+    position: relative;
+    display: inline-block;
+    flex-shrink: 0;
+}
+
+.header__sort-select {
+    padding: 9px 32px 9px 14px;
+    font-size: 13px;
+    font-family: inherit;
+    color: #333;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    transition: all 0.3s ease;
+    min-width: 140px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23666' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+}
+
+.header__sort-select:hover {
+    border-color: #007bff;
+    box-shadow: 0 2px 8px rgba(0, 123, 255, 0.15);
+}
+
+.header__sort-select:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.2);
+}
+
+.header__sort-select option {
+    padding: 10px 16px;
+    font-size: 14px;
+    color: #333;
+    background-color: white;
+}
+
+.header__sort-select option:checked {
+    background-color: #007bff;
+    color: white;
+}
+
+/* ===== Фильтр по цене ===== */
+.header__price-filter {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex-shrink: 0;
+    background: #f8f9fa;
+    padding: 4px 8px 4px 12px;
+    border-radius: 8px;
+    border: 1px solid #e8e8e8;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.header__price-filter:focus-within {
+    border-color: #1976d2;
+    box-shadow: 0 0 0 3px rgba(25, 118, 210, 0.15);
+}
+
+.header__price-input {
+    width: 55px;
+    padding: 7px 2px;
+    border: none;
+    background: transparent;
+    font-size: 13px;
+    font-weight: 500;
+    color: #333;
+    outline: none;
+    text-align: center;
+    font-family: inherit;
+}
+
+.header__price-input::placeholder {
+    color: #aaa;
+    font-weight: 400;
+    font-size: 12px;
+}
+
+.header__price-input::-webkit-outer-spin-button,
+.header__price-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.header__price-input {
+    -moz-appearance: textfield;
+}
+
+.header__price-separator {
+    color: #bbb;
+    font-size: 14px;
+    font-weight: 300;
+    user-select: none;
+}
+
+/* ===== Авторизация ===== */
 .header__auth {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
+    flex-shrink: 0;
 }
 
 .header__auth__div {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
 }
 
 .header__auth-login,
 .header__auth-logout {
-    padding: 8px 16px;
+    padding: 7px 14px;
     border: none;
     border-radius: 8px;
     font-weight: 600;
-    font-size: 14px;
+    font-size: 13px;
     cursor: pointer;
     transition: background-color 0.2s;
 }
@@ -183,11 +273,11 @@
 }
 
 .header__auth-profile {
-    padding: 8px 16px;
+    padding: 7px 14px;
     border: none;
     border-radius: 8px;
     font-weight: 600;
-    font-size: 14px;
+    font-size: 13px;
     cursor: pointer;
     transition: background-color 0.2s;
     background-color: #f0f5fb;
@@ -200,62 +290,183 @@
     background-color: #dceaf9;
 }
 
-/* ===== Блок: сортировка в шапке ===== */
-.header__sort {
-    position: relative;
-    display: inline-block;
+/* ===== Корзина ===== */
+.header__cart {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-shrink: 0;
 }
 
-/* ===== Элемент: сам выпадающий список ===== */
-.header__sort-select {
-    padding: 10px 35px 10px 18px;
+.header__count {
     font-size: 14px;
-    font-family: inherit;
+    font-weight: 600;
     color: #333;
-    background-color: white;
-    border: 1px solid #ddd;
+    white-space: nowrap;
+}
+
+.header__open {
+    padding: 7px 14px;
+    border: none;
     border-radius: 8px;
-    cursor: pointer;
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    transition: all 0.3s ease;
-    min-width: 170px;
-}
-
-/* Стрелка вниз (кастомная) */
-.header__sort-select {
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23666' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 14px center;
-}
-
-/* Hover */
-.header__sort-select:hover {
-    border-color: #007bff;
-    box-shadow: 0 2px 8px rgba(0, 123, 255, 0.15);
-}
-
-/* Фокус */
-.header__sort-select:focus {
-    outline: none;
-    border-color: #007bff;
-    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.2);
-}
-
-/* ===== Стили для option (в браузерах, где поддерживается) ===== */
-.header__sort-select option {
-    padding: 10px 16px;
-    font-size: 14px;
-    color: #333;
-    background-color: white;
-}
-
-.header__sort-select option:hover {
-    background-color: #f0f7ff;
-}
-
-.header__sort-select option:checked {
-    background-color: #007bff;
+    background-color: #1976d2;
     color: white;
+    font-weight: 600;
+    font-size: 13px;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.header__open:hover {
+    background-color: #125a9c;
+}
+
+/* ===== Адаптив для планшетов ===== */
+@media (max-width: 1024px) {
+    .header {
+        padding: 14px 18px;
+        gap: 10px;
+    }
+
+    .header__search {
+        max-width: 500px;
+        gap: 8px;
+        margin: 0 10px;
+    }
+
+    .header__sort-select {
+        min-width: 120px;
+        font-size: 12px;
+        padding: 8px 28px 8px 12px;
+    }
+
+    .header__price-input {
+        width: 45px;
+        font-size: 12px;
+    }
+
+    .header__category-toggle {
+        font-size: 12px;
+        padding: 8px 12px;
+    }
+
+    .header__logo {
+        font-size: 22px;
+    }
+}
+
+/* ===== Адаптив для телефонов ===== */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 12px 16px;
+        gap: 12px;
+    }
+
+    .header__logo {
+        text-align: center;
+        font-size: 22px;
+    }
+
+    .header__search {
+        max-width: 100%;
+        margin: 0;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px;
+    }
+
+    .header__search-input {
+        flex: 1 1 100%;
+        min-width: unset;
+    }
+
+    .header__sort-select {
+        min-width: 110px;
+        font-size: 12px;
+    }
+
+    .header__price-filter {
+        padding: 4px 6px 4px 10px;
+    }
+
+    .header__price-input {
+        width: 40px;
+        font-size: 12px;
+    }
+
+    .header__auth {
+        justify-content: center;
+    }
+
+    .header__cart {
+        justify-content: center;
+    }
+
+    .header__category-list {
+        min-width: 200px;
+        grid-template-columns: 1fr;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}
+
+@media (max-width: 480px) {
+    .header__search {
+        gap: 6px;
+    }
+
+    .header__sort-select {
+        min-width: 90px;
+        font-size: 11px;
+        padding: 6px 24px 6px 10px;
+        background-position: right 8px center;
+    }
+
+    .header__price-input {
+        width: 35px;
+        font-size: 11px;
+        padding: 5px 2px;
+    }
+
+    .header__price-filter {
+        padding: 3px 4px 3px 8px;
+    }
+
+    .header__category-toggle {
+        font-size: 11px;
+        padding: 6px 10px;
+    }
+
+    .header__auth-login,
+    .header__auth-logout,
+    .header__auth-profile,
+    .header__open {
+        font-size: 11px;
+        padding: 6px 10px;
+    }
+
+    .header__count {
+        font-size: 12px;
+    }
+
+    .header__search-input {
+        font-size: 12px;
+        padding: 7px 10px;
+    }
+
+}
+.header__reset-btn {
+    padding: 7px 14px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 13px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    background-color: #f0f5fb;
+    color: #1976d2;
+    text-decoration: none;
+    display: inline-block;
 }
