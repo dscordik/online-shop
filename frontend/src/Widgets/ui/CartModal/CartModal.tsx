@@ -1,6 +1,7 @@
 import React, {FC} from "react";
 import {CartItem} from "../../../Entities/product/model/types";
 import './CartModal.css'
+import {Link} from "react-router";
 
 interface CartProps {
     cart: CartItem[],
@@ -42,6 +43,7 @@ export const CartModal:FC<CartProps> = ({cart, onOpenCart, removeFromCart, addCo
                         <span className="cart-modal__total-price">Сумма: {total_price} ₽</span>
                     </div>
                     <button className="cart-modal__clear" onClick={() => clearCorzina()}>Очистить корзину</button>
+                    {cart.length !== 0 && (<Link to='/order'><button className='cart-modal__order' onClick={() => onOpenCart()}>Оформить заказ</button></Link>)}
                 </div>
             </div>
         </div>

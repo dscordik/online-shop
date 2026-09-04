@@ -12,6 +12,7 @@ import {fetchCurrentUser} from "../Entities/user/model/authApi";
 import {Route, Routes} from "react-router";
 import {ProfilePage} from "../Pages/ProfilePage/ui/ProfilePage";
 import {ProductPage} from "../Pages/ProductPage/ui/ProductPage";
+import {OrderPage} from "../Pages/OrderPage/ui/OrderPage";
 
 
 function App() {
@@ -172,6 +173,7 @@ function App() {
                 </Route>
                 <Route path='/profile' element={<ProfilePage handleLogout={handleLogout} handleAuthSuccess={handleAuthSuccess} user={user}/>}></Route>
                 <Route path='/product/:id' element={<ProductPage addCart={addCart}/>}></Route>
+                <Route path='/order' element={<OrderPage cart={cart} clearCorzina={clearCorzina} total_price={total_price}/>}></Route>
             </Routes>
             {isCartOpen && (<CartModal cart={cart} onOpenCart={onOpenCart} removeFromCart={removeFromCart} minusCount={minusCount}
                                        addCount={addCount} total_price={total_price} total_count={total_count} clearCorzina={clearCorzina}/>)}

@@ -171,3 +171,19 @@
 .cart-modal__clear:hover {
     background-color: #c62828;
 }
+.cart-modal__order {
+    width: 100%;
+    padding: 10px 16px;
+    border: none;
+    border-radius: 8px;
+    background-color: #67e535;
+    color: white;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.cart-modal__order:hover {
+    background-color: #5dc628;
+}

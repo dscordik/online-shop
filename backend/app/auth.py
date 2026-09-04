@@ -1,4 +1,3 @@
-import bcrypt
 from fastapi import APIRouter
 from fastapi.params import Depends
 from fastapi.security import OAuth2PasswordBearer
@@ -46,6 +45,21 @@ def get_current_user(token: str = Depends(oauth2_scheme), db:Session = Depends(g
     if user is None:
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail='Неверный токен')
     return user
+
+def get_current_user_order(token: str = Depends(oauth2_scheme), db:Session = Depends(get_db)) -> User:
+    try:
+        payload = decode_token(token)
+        if payload is None:
+            return None
+        else:
+            user_email = payload.get('sub')
+            user = db.query(User).filter(User.email == user_email).first()
+        if user:
+            return user
+        else:
+             return None
+    except:
+        return None
 
 @router.post('/refresh', response_model=Token)
 def refresh_token(body: RefreshRequest, db:Session = Depends(get_db)):

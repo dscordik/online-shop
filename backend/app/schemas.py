@@ -1,5 +1,6 @@
 from datetime import datetime
 from pydantic import BaseModel, ConfigDict, field_validator,EmailStr
+from typing import Literal
 
 class ProductSchema(BaseModel):
     id: int
@@ -66,3 +67,42 @@ class UserUpdate(BaseModel):
             if len(v.encode()) > 72:
                 raise ValueError('Пароль не должен содержать более 72 байт')
             return v
+
+class OrderItemCreate(BaseModel):
+    product_name:str
+    price:int
+    total_count:int
+    product_id:int
+
+class OrderCreate(BaseModel):
+    first_name:str
+    last_name:str
+    number:str
+    email:str
+    address:str
+    items:list[OrderItemCreate]
+
+class OrderItemOut(BaseModel):
+    id: int
+    order_id: int
+    product_id:int
+    product_name:str
+    price:int
+    total_count:int
+
+    model_config = ConfigDict(from_attributes=True)
+
+class OrderOut(BaseModel):
+    id: int
+    user_id: int | None = None
+    first_name: str
+    last_name: str
+    number: str
+    email: str
+    address: str
+    total_price: int
+    status: Literal['Оформляем', 'Собираем', 'Доставляем', 'Готов к получению'] ='Оформляем'
+    created_at_order: datetime
+    items:list[OrderItemOut]
+
+    model_config = ConfigDict(from_attributes=True)
