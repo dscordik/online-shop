@@ -11,6 +11,7 @@ from app.schemas import ProductSchema
 from typing import List
 from app.auth import router as auth_router
 from app.orders import router as order_router
+from app.favorites import router as favorite_router
 
 models.Base.metadata.create_all(bind=engine)
 app = FastAPI(title="online-shop", description="Проект для 11 класса", version="0.0.0")
@@ -23,6 +24,7 @@ app.add_middleware(
 )
 app.include_router(auth_router)
 app.include_router(order_router)
+app.include_router(favorite_router)
 @app.get("/")
 def read_root():
     return {"Hello": "World"}

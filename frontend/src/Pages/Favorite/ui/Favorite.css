@@ -1,0 +1,229 @@
+/* В файле Favorite.css */
+
+/* Контейнер сетки */
+.catalog__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 30px;
+    padding: 30px 20px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Карточка товара */
+.product-card {
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    position: relative;
+}
+
+.product-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+}
+
+/* Изображение */
+.product-card__image {
+    width: 100%;
+    height: 220px;
+    object-fit: contain;
+    margin-bottom: 14px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 10px;
+}
+
+/* Ссылка с названием */
+.product-card a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Название товара */
+.product-card__title {
+    font-size: 17px;
+    font-weight: 600;
+    color: #1a1a2e;
+    margin-bottom: 8px;
+    line-height: 1.4;
+    min-height: 48px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.product-card__title:hover {
+    color: #1976d2;
+}
+
+/* Цена */
+.product-card__price {
+    font-size: 22px;
+    font-weight: 700;
+    color: #1976d2;
+    margin-bottom: 16px;
+    margin-top: auto;
+}
+
+/* Контейнер для двух кнопок */
+.product-card__actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 4px;
+}
+
+/* Общий стиль для кнопок */
+.product-card__actions button {
+    flex: 1;
+    padding: 12px 8px;
+    border: none;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: center;
+    white-space: nowrap;
+}
+
+/* Кнопка "В корзину" */
+.product-card__actions .cart-btn {
+    background: #1976d2;
+    color: #fff;
+}
+
+.product-card__actions .cart-btn:hover {
+    background: #1565c0;
+    transform: scale(1.02);
+}
+
+/* Кнопка "Удалить" */
+.product-card__actions .delete-btn {
+    background: #ff6b6b;
+    color: #fff;
+}
+
+.product-card__actions .delete-btn:hover {
+    background: #e74c3c;
+    transform: scale(1.02);
+}
+
+/* Кнопка "Добавить в избранное" */
+.product-card__actions .favorite-add-btn {
+    background: #ff6b6b;
+    color: #fff;
+}
+
+.product-card__actions .favorite-add-btn:hover {
+    background: #e74c3c;
+    transform: scale(1.02);
+}
+
+/* Пустое состояние */
+.favorite-empty {
+    text-align: center;
+    padding: 80px 20px;
+}
+
+.favorite-empty h2 {
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.favorite-empty button {
+    padding: 14px 40px;
+    background: #1976d2;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.favorite-empty button:hover {
+    background: #1565c0;
+}
+
+/* Адаптив для телефонов */
+@media (max-width: 600px) {
+    .catalog__grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+        padding: 16px;
+    }
+
+    .product-card {
+        padding: 14px;
+    }
+
+    .product-card__image {
+        height: 150px;
+    }
+
+    .product-card__title {
+        font-size: 14px;
+        min-height: 38px;
+    }
+
+    .product-card__price {
+        font-size: 18px;
+    }
+
+    .product-card__actions button {
+        font-size: 12px;
+        padding: 10px 6px;
+    }
+}
+
+@media (max-width: 420px) {
+    .catalog__grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+}
+
+.favorite-empty-btn {
+    padding: 14px 48px;
+    background: #1976d2;
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.favorite-empty-btn:hover {
+    background: #1565c0;
+    transform: scale(1.03);
+}
+
+.favorite-empty-btn:active {
+    transform: scale(0.97);
+}
+
+.favorite-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 400px;
+    text-align: center;
+}
+
+.favorite-empty h3 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 24px;
+    font-weight: 500;
+}

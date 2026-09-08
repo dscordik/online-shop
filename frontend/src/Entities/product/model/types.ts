@@ -29,10 +29,20 @@ export interface HeaderProps{
 }
 export interface ProductCardProps{
     product:Product,
-    addCart:(product:Product) => void
+    addCart:(product:Product) => void,
+    addFavoriteProduct:(product_id:number) => void,
+    isFavorite:boolean,
+    user: User | null,
+    onOpenAuthModal: () => void,
+    deleteFavoriteProduct:(product_id:number) => void,
 }
 
 export interface CartItem extends Product{
     count:number
 }
 
+export interface Favorite{
+    id:number,
+    created_at_favorite:string,
+    product:Product
+}

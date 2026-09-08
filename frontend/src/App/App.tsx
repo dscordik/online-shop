@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import './App.css';
-import {CartItem, Product} from "../Entities/product/model/types";
+import {CartItem, Favorite, Product} from "../Entities/product/model/types";
 import {Header} from "../Widgets/ui/Header/Header";
 import ProductCard from "../Entities/product/ui/ProductCard";
 import {CartModal} from "../Widgets/ui/CartModal/CartModal";
@@ -13,6 +13,8 @@ import {Route, Routes} from "react-router";
 import {ProfilePage} from "../Pages/ProfilePage/ui/ProfilePage";
 import {ProductPage} from "../Pages/ProductPage/ui/ProductPage";
 import {OrderPage} from "../Pages/OrderPage/ui/OrderPage";
+import {addFavorite, allFavorites, deleteFavorite} from "../Entities/user/model/favorite";
+import {FavoriteComponent} from "../Pages/Favorite/ui/Favorite";
 
 
 function App() {
@@ -33,6 +35,20 @@ function App() {
             return []
         }
     })
+    const [favorite, setFavorite] = useState<Favorite[]>([])
+    useEffect(() => {
+        if (getAccessToken()) {
+            async function TOKENS() {
+                try {
+                    const currentFavorite = await allFavorites()
+                    setFavorite(currentFavorite)
+                } catch {
+                    setFavorite([])
+                }
+            }
+            TOKENS()
+        }
+    }, []);
     useEffect(() => {
         fetch("http://localhost:8000/api/products")
             .then((res) => res.json())
@@ -72,6 +88,17 @@ function App() {
     function handleAuthSuccess(users:User) {
         setUser(users)
         setIsAuthModalOpen(false)
+    }
+
+    async function addFavoriteProduct(product_id:number) {
+        const fav = await addFavorite(product_id)
+        setFavorite([...favorite, fav])
+    }
+
+    async function deleteFavoriteProduct(product_id:number) {
+        await deleteFavorite(product_id)
+        const delfav = favorite.filter((item) => item.product.id !== product_id)
+        setFavorite(delfav)
     }
 
      function addCart(product: Product) {
@@ -166,7 +193,9 @@ function App() {
                         <h1 className="catalog__title" >Каталог товаров</h1>
                         <div className="catalog__grid">
                             {copyOfFiltered.map((product) =>
-                                <ProductCard key={product.id} product={product} addCart={addCart}/>)}
+                                <ProductCard key={product.id} product={product} addCart={addCart} addFavoriteProduct={addFavoriteProduct}
+                                             isFavorite={favorite.some(f => f.product.id === product.id)} user={user}
+                                             onOpenAuthModal={() => setIsAuthModalOpen(true)} deleteFavoriteProduct={deleteFavoriteProduct}/>)}
                         </div>
                     </>
                 )}>
@@ -174,6 +203,7 @@ function App() {
                 <Route path='/profile' element={<ProfilePage handleLogout={handleLogout} handleAuthSuccess={handleAuthSuccess} user={user}/>}></Route>
                 <Route path='/product/:id' element={<ProductPage addCart={addCart}/>}></Route>
                 <Route path='/order' element={<OrderPage cart={cart} clearCorzina={clearCorzina} total_price={total_price}/>}></Route>
+                <Route path='/favorites' element={<FavoriteComponent favorite={favorite} addCart={addCart} deleteFavoriteProduct={deleteFavoriteProduct} user={user}/>}></Route>
             </Routes>
             {isCartOpen && (<CartModal cart={cart} onOpenCart={onOpenCart} removeFromCart={removeFromCart} minusCount={minusCount}
                                        addCount={addCount} total_price={total_price} total_count={total_count} clearCorzina={clearCorzina}/>)}

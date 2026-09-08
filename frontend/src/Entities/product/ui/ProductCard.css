@@ -42,21 +42,33 @@
 .product-card__button {
     width: 100%;
     padding: 12px;
-
     border: none;
     border-radius: 8px;
-
     background: #1976d2;
     color: #fff;
-
     font-size: 16px;
     font-weight: 600;
-
     cursor: pointer;
-
     transition: background-color 0.2s ease;
 }
 
 .product-card__button:hover {
     background: #1565c0;
+}
+
+.favorite-btn{
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    background: #19d25d;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.favorite-btn:hover {
+    background: #15c04b;
 }

@@ -32,10 +32,10 @@ export const ProfilePage:React.FC<ProfilePageProps> = ({user, handleLogout, hand
         e.preventDefault()
         try {
             const payload:UserUpdate = {email: forms.email}
-            if (forms.currentPassword != '') {
+            if (forms.currentPassword !== '') {
                 payload.old_password = forms.currentPassword
             }
-            if (forms.newPassword != ''){
+            if (forms.newPassword !== ''){
                 payload.new_password = forms.newPassword
             }
             const updateUser = await userUpdate(payload)

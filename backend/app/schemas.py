@@ -106,3 +106,13 @@ class OrderOut(BaseModel):
     items:list[OrderItemOut]
 
     model_config = ConfigDict(from_attributes=True)
+
+class FavoriteCreate(BaseModel):
+    product_id:int
+
+class FavoriteOut(BaseModel):
+    id:int
+    product: ProductSchema
+    created_at_favorite:datetime
+
+    model_config = ConfigDict(from_attributes=True)

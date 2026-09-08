@@ -48,6 +48,7 @@ export const Header: React.FC<HeaderProps> = ({total_count,onOpenCart, searchPro
                     <button className="header__auth-login" onClick={() => onIsAuthModalOpen()}>Войти</button>
                 )}
             </div>
+            <Link to='/favorites'><button className='header__fav-btn'>Избранные</button></Link>
             <div className="header__cart">
                 <span className="header__count">Товаров: {total_count} шт.</span>
                 <button className="header__open" onClick={() => onOpenCart()}>Корзина</button>

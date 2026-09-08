@@ -74,7 +74,7 @@ export const OrderPage:React.FC<OrderPageProps> = ({cart, total_price, clearCorz
 
     return (
         <div className="order-page">
-            <Link to="/" className="order-page__back">← В каталог товаров</Link>
+            <Link to="/" className="order-page__back">В каталог товаров</Link>
             <h2 className="order-page__title">Оформление заказа</h2>
             <div className="order-page__items">
                 {cart.map((value) => (

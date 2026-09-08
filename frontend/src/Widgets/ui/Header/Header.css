@@ -470,3 +470,21 @@
     text-decoration: none;
     display: inline-block;
 }
+
+.header__fav-btn{
+    padding: 7px 14px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 13px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    background-color: #f0f5fb;
+    color: #1976d2;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.header__fav-btn:hover{
+    background-color: #90abc3;
+}
