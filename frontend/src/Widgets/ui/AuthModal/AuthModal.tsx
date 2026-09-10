@@ -18,7 +18,8 @@ export const AuthModal:React.FC<AuthModalProps> = ({onAuthSuccess, onClose}) => 
                 <h2 className="auth-modal__title">{mode === 'login' ? 'Вход' : 'Регистрация'}</h2>
                 {mode === 'login'
                     ? <LoginForm onAuthSuccess={onAuthSuccess} onSwitchToRegister={() => setMode('register')}/>
-                    : <RegisterForm onAuthSuccess={onAuthSuccess} onSwitchToLogin={() => setMode('login')}/>}
+                    : <RegisterForm onAuthSuccess={onAuthSuccess} onSwitchToLogin={() => setMode('login')}/>
+                }
             </div>
         </div>
     )

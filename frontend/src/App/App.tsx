@@ -18,6 +18,8 @@ import {FavoriteComponent} from "../Pages/Favorite/ui/Favorite";
 
 
 function App() {
+    const [currentPage, setCurrentPage] = useState<number>(1)
+    const [itemsPearPage, setItemsPearPage] = useState<number>(9)
     const [minPrice, setMinPrice] = useState<string>('')
     const [bigPrice, setBigPrice] = useState<string>('')
     const [sortCategories, setSortCategories] = useState<'default' | 'minToBigPrice' | 'bigToMinPrice' | 'onAlphabet'>('default')
@@ -71,6 +73,15 @@ function App() {
             TOKENS()
         }
     }, []);
+    useEffect(() => {
+        setCurrentPage(currentPage)
+    }, [
+        minPrice,
+        bigPrice,
+        sortCategories,
+        selectCategory,
+        searchProducts,
+    ]);
 
     function resetFilters() {
         setMinPrice('')
@@ -83,11 +94,19 @@ function App() {
     function handleLogout() {
         clearTokens()
         setUser(null)
+        setFavorite([])
     }
 
-    function handleAuthSuccess(users:User) {
+    async function handleAuthSuccess(users:User) {
         setUser(users)
         setIsAuthModalOpen(false)
+        try {
+            const data = await allFavorites()
+            setFavorite(data)
+        } catch {
+            setFavorite([])
+            throw new Error('Список избранных пустой')
+        }
     }
 
     async function addFavoriteProduct(product_id:number) {
@@ -178,6 +197,9 @@ function App() {
         }
         return 0
     })
+    const allPages = Math.ceil(copyOfFiltered.length / itemsPearPage)
+    const startIndex = (currentPage - 1 ) * itemsPearPage
+    const viewProducts = copyOfFiltered.slice(startIndex, startIndex + itemsPearPage)
 
     return (
         <div className="catalog">
@@ -192,16 +214,21 @@ function App() {
                     <>
                         <h1 className="catalog__title" >Каталог товаров</h1>
                         <div className="catalog__grid">
-                            {copyOfFiltered.map((product) =>
+                            {viewProducts.map((product) =>
                                 <ProductCard key={product.id} product={product} addCart={addCart} addFavoriteProduct={addFavoriteProduct}
                                              isFavorite={favorite.some(f => f.product.id === product.id)} user={user}
-                                             onOpenAuthModal={() => setIsAuthModalOpen(true)} deleteFavoriteProduct={deleteFavoriteProduct}/>)}
+                                             onOpenAuthModal={() => setIsAuthModalOpen(true)} deleteFavoriteProduct={deleteFavoriteProduct}/>)
+                            }
                         </div>
+                        {allPages > 1 && (<div className='paginate'>
+                            <button className='paginate__btn-min' type='button' disabled={currentPage === 1} onClick={() => setCurrentPage(prevState => prevState - 1)}>Назад</button>
+                            <button className='paginate__btn-pls' type='button' disabled={currentPage === allPages} onClick={() => setCurrentPage(prevState => prevState + 1)}>Вперед</button>
+                        </div>)}
                     </>
                 )}>
                 </Route>
                 <Route path='/profile' element={<ProfilePage handleLogout={handleLogout} handleAuthSuccess={handleAuthSuccess} user={user}/>}></Route>
-                <Route path='/product/:id' element={<ProductPage addCart={addCart}/>}></Route>
+                <Route path='/product/:id' element={<ProductPage addCart={addCart} addFavoriteProduct={addFavoriteProduct}/>}></Route>
                 <Route path='/order' element={<OrderPage cart={cart} clearCorzina={clearCorzina} total_price={total_price}/>}></Route>
                 <Route path='/favorites' element={<FavoriteComponent favorite={favorite} addCart={addCart} deleteFavoriteProduct={deleteFavoriteProduct} user={user}/>}></Route>
             </Routes>

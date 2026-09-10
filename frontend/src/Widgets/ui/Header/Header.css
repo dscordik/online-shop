@@ -192,7 +192,7 @@
     box-shadow: 0 0 0 3px rgba(25, 118, 210, 0.15);
 }
 
-.header__price-input1 {
+.header__price-input {
     width: 55px;
     padding: 7px 2px;
     border: none;
@@ -205,19 +205,19 @@
     font-family: inherit;
 }
 
-.header__price-input1::placeholder {
+.header__price-input::placeholder {
     color: #aaa;
     font-weight: 400;
     font-size: 12px;
 }
 
-.header__price-input1::-webkit-outer-spin-button,
-.header__price-input1::-webkit-inner-spin-button {
+.header__price-input::-webkit-outer-spin-button,
+.header__price-input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
 
-.header__price-input1 {
+.header__price-input {
     -moz-appearance: textfield;
 }
 
@@ -226,6 +226,35 @@
     font-size: 14px;
     font-weight: 300;
     user-select: none;
+}
+
+/* ===== Кнопка "Сбросить фильтры" ===== */
+.header__reset-btn {
+    padding: 7px 14px;
+    border: 1px solid #1976d2;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 13px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    background-color: transparent;
+    color: #1976d2;
+    text-decoration: none;
+    display: inline-block;
+    white-space: nowrap;
+}
+
+.header__reset-btn:hover {
+    background-color: #e3f2fd;
+}
+
+/* ===== Блок правой части шапки ===== */
+.header__right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+    flex-wrap: wrap;
 }
 
 /* ===== Авторизация ===== */
@@ -290,6 +319,26 @@
     background-color: #dceaf9;
 }
 
+/* ===== Кнопка "Избранные" ===== */
+.header__fav-btn {
+    padding: 7px 14px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 13px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    background-color: #f0f5fb;
+    color: #1976d2;
+    text-decoration: none;
+    display: inline-block;
+    white-space: nowrap;
+}
+
+.header__fav-btn:hover {
+    background-color: #dceaf9;
+}
+
 /* ===== Корзина ===== */
 .header__cart {
     display: flex;
@@ -340,7 +389,7 @@
         padding: 8px 28px 8px 12px;
     }
 
-    .header__price-input1 {
+    .header__price-input {
         width: 45px;
         font-size: 12px;
     }
@@ -352,6 +401,10 @@
 
     .header__logo {
         font-size: 22px;
+    }
+
+    .header__right {
+        gap: 8px;
     }
 }
 
@@ -391,9 +444,14 @@
         padding: 4px 6px 4px 10px;
     }
 
-    .header__price-input1 {
+    .header__price-input {
         width: 40px;
         font-size: 12px;
+    }
+
+    .header__right {
+        justify-content: center;
+        gap: 8px;
     }
 
     .header__auth {
@@ -424,7 +482,7 @@
         background-position: right 8px center;
     }
 
-    .header__price-input1 {
+    .header__price-input {
         width: 35px;
         font-size: 11px;
         padding: 5px 2px;
@@ -442,7 +500,9 @@
     .header__auth-login,
     .header__auth-logout,
     .header__auth-profile,
-    .header__open {
+    .header__open,
+    .header__fav-btn,
+    .header__reset-btn {
         font-size: 11px;
         padding: 6px 10px;
     }
@@ -456,35 +516,7 @@
         padding: 7px 10px;
     }
 
-}
-.header__reset-btn {
-    padding: 7px 14px;
-    border: none;
-    border-radius: 8px;
-    font-weight: 600;
-    font-size: 13px;
-    cursor: pointer;
-    transition: background-color 0.2s;
-    background-color: #f0f5fb;
-    color: #1976d2;
-    text-decoration: none;
-    display: inline-block;
-}
-
-.header__fav-btn{
-    padding: 7px 14px;
-    border: none;
-    border-radius: 8px;
-    font-weight: 600;
-    font-size: 13px;
-    cursor: pointer;
-    transition: background-color 0.2s;
-    background-color: #f0f5fb;
-    color: #1976d2;
-    text-decoration: none;
-    display: inline-block;
-}
-
-.header__fav-btn:hover{
-    background-color: #90abc3;
+    .header__right {
+        gap: 6px;
+    }
 }

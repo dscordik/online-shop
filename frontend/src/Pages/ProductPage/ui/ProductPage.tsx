@@ -4,10 +4,11 @@ import {Link, useParams} from "react-router";
 import './ProductPage.css'
 
 interface ProductPageProps {
-    addCart: (product:Product) => void
+    addCart: (product:Product) => void,
+    addFavoriteProduct:(product_id:number) => void,
 }
 
-export const ProductPage:React.FC<ProductPageProps> = ({addCart}) => {
+export const ProductPage:React.FC<ProductPageProps> = ({addCart, addFavoriteProduct}) => {
     const {id} = useParams<{id: string}>();
     const [product, setProduct] = useState<Product | null>(null);
     const [loading, setLoading] = useState<boolean>(true);
@@ -50,6 +51,7 @@ export const ProductPage:React.FC<ProductPageProps> = ({addCart}) => {
                     <p className='product-page__description'>{product.description}</p>
                 </div>
                 <button className='product-page__btn' onClick={() => addCart(product)}>Добавить в корзину</button>
+                <button className='product-page__fav-btn' onClick={() => addFavoriteProduct(product?.id)}>Добавить в избранные</button>
             </div>
         </div>
     )

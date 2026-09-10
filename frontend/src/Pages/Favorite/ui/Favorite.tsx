@@ -1,5 +1,5 @@
 import './Favorite.css'
-import React, {useEffect, useState} from "react";
+import React, {useEffect} from "react";
 import {Favorite, Product} from "../../../Entities/product/model/types";
 import {Link, useNavigate} from "react-router";
 import {User} from "../../../Entities/user/model/types";

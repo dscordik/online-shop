@@ -28,3 +28,51 @@ body {
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
   gap: 24px;
 }
+.paginate__btn-min{
+  padding: 16px 48px;
+  margin-left: 380px;
+  font-size: 18px;
+  font-weight: 600;
+  color: white;
+  background: linear-gradient(135deg, #2375d3, #2e1ad6);
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(30, 204, 241, 0.84);
+  letter-spacing: 0.5px;
+  align-self: flex-start;
+}
+.paginate__btn-min:hover{
+  background: linear-gradient(135deg, #2375d3, #2e1ad6);
+  box-shadow: 0 4px 20px rgba(30, 204, 241, 0.84);
+  transform: translateY(-3px);
+}
+.paginate__btn-min:active{
+  transform: scale(0.96);
+  box-shadow: 0 4px 20px rgba(0, 78, 243, 0.84);
+}
+.paginate__btn-pls{
+  padding: 16px 48px;
+  margin-left: 48px;
+  font-size: 18px;
+  font-weight: 600;
+  color: white;
+  background: linear-gradient(135deg, #2375d3, #2e1ad6);
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(30, 204, 241, 0.84);
+  letter-spacing: 0.5px;
+  align-self: flex-start;
+}
+.paginate__btn-pls:hover{
+  background: linear-gradient(135deg, #2375d3, #2e1ad6);
+  box-shadow: 0 4px 20px rgba(30, 204, 241, 0.84);
+  transform: translateY(-3px);
+}
+.paginate__btn-pls:active{
+  transform: scale(0.96);
+  box-shadow: 0 4px 20px rgba(0, 78, 243, 0.84);
+}
