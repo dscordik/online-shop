@@ -161,3 +161,89 @@
         max-width: 100%;
     }
 }
+.profile-page__orders {
+    margin-top: 32px;
+    padding-top: 28px;
+    border-top: 1px solid #eee;
+}
+
+.profile-page__orders-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #222;
+    margin: 0 0 16px;
+}
+
+.profile-page__orders-empty {
+    font-size: 14px;
+    color: #777;
+}
+
+.profile-page__order {
+    border: 1px solid #e5e5e5;
+    border-radius: 10px;
+    padding: 16px 18px;
+    margin-bottom: 16px;
+}
+
+.profile-page__order-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.profile-page__order-date {
+    font-size: 13px;
+    color: #777;
+}
+
+.profile-page__order-status {
+    font-size: 12px;
+    font-weight: 600;
+    color: #1976d2;
+    background-color: #f0f5fb;
+    padding: 4px 10px;
+    border-radius: 6px;
+}
+
+.profile-page__order-items {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.profile-page__order-item {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 8px;
+    font-size: 13px;
+    color: #333;
+}
+
+.profile-page__order-item-name {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.profile-page__order-item-count,
+.profile-page__order-item-price {
+    color: #777;
+    text-align: right;
+}
+
+.profile-page__order-item-total {
+    font-weight: 600;
+    text-align: right;
+}
+
+.profile-page__order-total {
+    text-align: right;
+    font-weight: 700;
+    font-size: 15px;
+    color: #222;
+    padding-top: 8px;
+    border-top: 1px dashed #ddd;
+}

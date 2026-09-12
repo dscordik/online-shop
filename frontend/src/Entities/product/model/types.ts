@@ -46,3 +46,26 @@ export interface Favorite{
     created_at_favorite:string,
     product:Product
 }
+
+export interface OrderItem{
+    id:number,
+    order_id:number,
+    product_id:number,
+    product_name:string,
+    price:number,
+    total_count:number
+}
+
+export interface OrderOut {
+    id:number,
+    user_id:number | null,
+    first_name:string,
+    last_name:string,
+    number:string,
+    email:string,
+    address:string,
+    total_price:number,
+    status:'Оформляем' | 'Собираем' | 'Доставляем' | 'Готов к получению',
+    created_at_order:string,
+    items:OrderItem[]
+}

@@ -1,7 +1,7 @@
 import {AuthTokens, LoginPayload, RegisterPayload, User, UserUpdate} from "./types";
 import {getAccessToken} from "./tokenStorage";
 
-function extractErrorMessage(errorData: any): string {
+export function extractErrorMessage(errorData: any): string {
     const detail = errorData?.detail
 
     if (typeof detail === 'string') {
@@ -15,6 +15,23 @@ function extractErrorMessage(errorData: any): string {
     }
 
     return 'Произошла ошибка. Попробуйте ещё раз'
+}
+
+export async function authorizedFetch(url:string, param:Record<string, any>) {
+    const token = getAccessToken()
+    const headers: Record<string, string> =  {'Content-Type':'application/json', }
+    if (token) {
+        headers['Authorization'] = 'Bearer ' + token
+    } else{
+        throw new Error('Пользователь не авторизован')
+    }
+    const res = await fetch(url, {...param, headers:headers})
+    if (!res.ok) {
+        const errorData = await res.json()
+        throw new Error(extractErrorMessage(errorData))
+    } else {
+        return await res.json()
+    }
 }
 
 export async function registerUser(payload:RegisterPayload): Promise<User> {
@@ -46,36 +63,9 @@ export async function loginUser(payload: LoginPayload): Promise<AuthTokens> {
 }
 
 export async function fetchCurrentUser(): Promise<User>{
-    const token = getAccessToken()
-    if (token == null){
-        throw new Error('Пользователь не авторизован')
-    }
-    const res = await fetch('http://localhost:8000/api/auth/me', {
-        method:'GET',
-        headers: {'Authorization': 'Bearer ' + token}
-    })
-    if (!res.ok) {
-        const errorData = await res.json()
-        throw new Error(extractErrorMessage(errorData))
-    } else {
-        return await res.json()
-    }
+    return authorizedFetch('http://localhost:8000/api/auth/me', {method:'GET'})
 }
 
 export async function userUpdate(user:UserUpdate): Promise<User> {
-    const token = getAccessToken()
-    if (token == null) {
-        throw Error('Пользователь не авторизован')
-    }
-    const res = await fetch('http://localhost:8000/api/auth/me', {
-        method:'PATCH',
-        headers:{'Content-Type':'application/json', 'Authorization': 'Bearer ' + token},
-        body:JSON.stringify(user)
-    })
-    if (!res.ok) {
-        const errorData = await res.json()
-        throw Error(extractErrorMessage(errorData))
-    } else {
-        return await res.json()
-    }
+    return authorizedFetch('http://localhost:8000/api/auth/me', {method:'PATCH', body:JSON.stringify(user)})
 }
