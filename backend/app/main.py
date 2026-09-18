@@ -15,9 +15,15 @@ from app.favorites import router as favorite_router
 
 models.Base.metadata.create_all(bind=engine)
 app = FastAPI(title="online-shop", description="Проект для 11 класса", version="0.0.0")
+origins = [
+    "http://localhost:3000",
+    "http://localhost:5173", # на случай, если используете Vite локально
+    "https://vercel.app",
+    "https://vercel.app" # новый домен из панели разработчика
+]
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
