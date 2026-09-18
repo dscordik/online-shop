@@ -12,14 +12,16 @@ from typing import List
 from app.auth import router as auth_router
 from app.orders import router as order_router
 from app.favorites import router as favorite_router
+from app.seed import seed_db
 
 models.Base.metadata.create_all(bind=engine)
+seed_db()
 app = FastAPI(title="online-shop", description="Проект для 11 класса", version="0.0.0")
 origins = [
     "http://localhost:3000",
-    "http://localhost:5173", # на случай, если используете Vite локально
-    "https://vercel.app",
-    "https://vercel.app" # новый домен из панели разработчика
+    "http://localhost:5173",
+    "https://online-shop-seven-iota.vercel.app",
+    "https://online-shop-fmr4vzdwn-dscordiks-projects.vercel.app"
 ]
 app.add_middleware(
     CORSMiddleware,
