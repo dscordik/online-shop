@@ -1,5 +1,6 @@
 import {AuthTokens, LoginPayload, RegisterPayload, User, UserUpdate} from "./types";
 import {getAccessToken} from "./tokenStorage";
+import {API_BASE_URL} from "../../../Shared/api/config";
 
 export function extractErrorMessage(errorData: any): string {
     const detail = errorData?.detail
@@ -35,7 +36,7 @@ export async function authorizedFetch(url:string, param:Record<string, any>) {
 }
 
 export async function registerUser(payload:RegisterPayload): Promise<User> {
-    const res = await fetch('http://localhost:8000/api/auth/register', {
+    const res = await fetch(`${API_BASE_URL}/api/auth/register`, {
         method:'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(payload)
@@ -49,7 +50,7 @@ export async function registerUser(payload:RegisterPayload): Promise<User> {
 }
 
 export async function loginUser(payload: LoginPayload): Promise<AuthTokens> {
-    const res = await fetch('http://localhost:8000/api/auth/login', {
+    const res = await fetch(`${API_BASE_URL}/api/auth/login`, {
         method:'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
@@ -63,9 +64,9 @@ export async function loginUser(payload: LoginPayload): Promise<AuthTokens> {
 }
 
 export async function fetchCurrentUser(): Promise<User>{
-    return authorizedFetch('http://localhost:8000/api/auth/me', {method:'GET'})
+    return authorizedFetch(`${API_BASE_URL}/api/auth/me`, {method:'GET'})
 }
 
 export async function userUpdate(user:UserUpdate): Promise<User> {
-    return authorizedFetch('http://localhost:8000/api/auth/me', {method:'PATCH', body:JSON.stringify(user)})
+    return authorizedFetch(`${API_BASE_URL}/api/auth/me`, {method:'PATCH', body:JSON.stringify(user)})
 }

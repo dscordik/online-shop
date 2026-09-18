@@ -15,6 +15,7 @@ import {ProductPage} from "../Pages/ProductPage/ui/ProductPage";
 import {OrderPage} from "../Pages/OrderPage/ui/OrderPage";
 import {addFavorite, allFavorites, deleteFavorite} from "../Entities/user/model/favorite";
 import {FavoriteComponent} from "../Pages/Favorite/ui/Favorite";
+import {API_BASE_URL} from "../Shared/api/config";
 
 
 function App() {
@@ -52,7 +53,7 @@ function App() {
         }
     }, []);
     useEffect(() => {
-        fetch("http://localhost:8000/api/products")
+        fetch(`${API_BASE_URL}/api/products`)
             .then((res) => res.json())
             .then((data) => setProducts(data))
             .catch((err) => console.error('Ошибка загрузки', err))

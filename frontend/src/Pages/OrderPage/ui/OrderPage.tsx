@@ -3,6 +3,7 @@ import {CartItem} from "../../../Entities/product/model/types";
 import {Link} from "react-router";
 import {getAccessToken} from "../../../Entities/user/model/tokenStorage";
 import './OrderPage.css'
+import {API_BASE_URL} from "../../../Shared/api/config";
 
 interface OrderPageProps {
     cart: CartItem[],
@@ -45,7 +46,7 @@ export const OrderPage:React.FC<OrderPageProps> = ({cart, total_price, clearCorz
             if (cart.length === 0) {
                 return setError('Товаров нет в корзине')
             }
-            const res = await fetch('http://localhost:8000/api/order/', {
+            const res = await fetch(`${API_BASE_URL}/api/order/`, {
                 method: 'POST',
                 headers: headers,
                 body: JSON.stringify({

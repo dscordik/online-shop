@@ -4,6 +4,7 @@ import {Link, useNavigate} from "react-router";
 import {authorizedFetch, userUpdate} from '../../../Entities/user/model/authApi';
 import './ProfilePage.css'
 import {OrderOut} from "../../../Entities/product/model/types";
+import {API_BASE_URL} from "../../../Shared/api/config";
 
 interface ProfilePageProps{
     user:User | null,
@@ -45,7 +46,7 @@ export const ProfilePage:React.FC<ProfilePageProps> = ({user, handleAuthSuccess}
     }
 
     async function historyOfOrders():Promise<OrderOut[]> {
-        return authorizedFetch('http://localhost:8000/api/order/me', {method:'GET'})
+        return authorizedFetch(`${API_BASE_URL}/api/order/me`, {method:'GET'})
     }
 
     async function handleUserUpdate(e:React.FormEvent){

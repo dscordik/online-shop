@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react'
 import {Product} from "../../../Entities/product/model/types";
 import {Link, useParams} from "react-router";
 import './ProductPage.css'
+import {API_BASE_URL} from "../../../Shared/api/config";
 
 interface ProductPageProps {
     addCart: (product:Product) => void,
@@ -13,7 +14,7 @@ export const ProductPage:React.FC<ProductPageProps> = ({addCart, addFavoriteProd
     const [product, setProduct] = useState<Product | null>(null);
     const [loading, setLoading] = useState<boolean>(true);
     useEffect(() => {
-        fetch(`http://localhost:8000/api/products/${id}`)
+        fetch(`${API_BASE_URL}/api/products/${id}`)
             .then((res) => {
                 if (!res.ok) throw new Error('Товар не найден');
                 return res.json();
