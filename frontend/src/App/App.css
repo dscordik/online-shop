@@ -1,3 +1,4 @@
+/* ===== Глобальные сбросы ===== */
 * {
   margin: 0;
   padding: 0;
@@ -9,28 +10,48 @@ body {
   background-color: #f5f5f5;
 }
 
+/* ===== Основной контейнер ===== */
 .catalog {
   max-width: 1200px;
   margin: 0 auto;
   padding: 32px 20px;
+  width: 100%; /* Важно для адаптивности */
 }
 
+/* ===== Заголовок ===== */
 .catalog__title {
   margin: 30px 0;
   text-align: center;
   font-size: 32px;
   font-weight: 700;
   color: #333;
+  line-height: 1.2;
 }
 
+/* ===== Сетка товаров ===== */
 .catalog__grid {
   display: grid;
+  /* Автоматически подбирает количество колонок, но не меньше 260px */
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
   gap: 24px;
+  width: 100%;
 }
-.paginate__btn-min{
+
+/* ===== Пагинация ===== */
+.paginate {
+  display: flex;
+  justify-content: center; /* Центрируем кнопки */
+  align-items: center;
+  gap: 20px; /* Отступ между кнопками */
+  margin-top: 40px;
+  margin-bottom: 20px;
+  flex-wrap: wrap; /* Позволяет кнопкам переноситься на мобильных */
+}
+
+/* Общие стили для обеих кнопок */
+.paginate__btn-min,
+.paginate__btn-pls {
   padding: 16px 48px;
-  margin-left: 380px;
   font-size: 18px;
   font-weight: 600;
   color: white;
@@ -41,38 +62,109 @@ body {
   transition: all 0.3s ease;
   box-shadow: 0 4px 20px rgba(30, 204, 241, 0.84);
   letter-spacing: 0.5px;
-  align-self: flex-start;
+  /* Убираем фиксированные отступы, они ломали верстку */
+  margin-left: 0;
+  margin-right: 0;
+  white-space: nowrap; /* Чтобы текст не переносился внутри кнопки */
 }
-.paginate__btn-min:hover{
+
+.paginate__btn-min:hover,
+.paginate__btn-pls:hover {
   background: linear-gradient(135deg, #2375d3, #2e1ad6);
   box-shadow: 0 4px 20px rgba(30, 204, 241, 0.84);
   transform: translateY(-3px);
 }
-.paginate__btn-min:active{
+
+.paginate__btn-min:active,
+.paginate__btn-pls:active {
   transform: scale(0.96);
   box-shadow: 0 4px 20px rgba(0, 78, 243, 0.84);
 }
-.paginate__btn-pls{
-  padding: 16px 48px;
-  margin-left: 48px;
-  font-size: 18px;
-  font-weight: 600;
-  color: white;
-  background: linear-gradient(135deg, #2375d3, #2e1ad6);
-  border: none;
-  border-radius: 50px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 20px rgba(30, 204, 241, 0.84);
-  letter-spacing: 0.5px;
-  align-self: flex-start;
+
+.paginate__btn-min:disabled,
+.paginate__btn-pls:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
 }
-.paginate__btn-pls:hover{
-  background: linear-gradient(135deg, #2375d3, #2e1ad6);
-  box-shadow: 0 4px 20px rgba(30, 204, 241, 0.84);
-  transform: translateY(-3px);
+
+/* ===== Адаптив для планшетов (1024px) ===== */
+@media (max-width: 1024px) {
+  .catalog {
+    padding: 24px 16px;
+  }
+
+  .catalog__title {
+    font-size: 28px;
+    margin: 20px 0;
+  }
+
+  .catalog__grid {
+    /* На планшетах можно явно указать 2 колонки, если auto-fill не подходит */
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .paginate__btn-min,
+  .paginate__btn-pls {
+    padding: 14px 36px;
+    font-size: 16px;
+  }
 }
-.paginate__btn-pls:active{
-  transform: scale(0.96);
-  box-shadow: 0 4px 20px rgba(0, 78, 243, 0.84);
+
+/* ===== Адаптив для телефонов (768px) ===== */
+@media (max-width: 768px) {
+  .catalog {
+    padding: 16px 12px;
+  }
+
+  .catalog__title {
+    font-size: 24px;
+    margin: 16px 0;
+  }
+
+  .catalog__grid {
+    /* На мобильных — 1 колонка */
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .paginate {
+    gap: 12px;
+    margin-top: 24px;
+  }
+
+  .paginate__btn-min,
+  .paginate__btn-pls {
+    padding: 12px 28px;
+    font-size: 15px;
+    flex: 1 1 auto; /* Кнопки растягиваются, если нужно */
+    max-width: 180px; /* Но не слишком широко */
+  }
+}
+
+/* ===== Очень маленькие экраны (480px) ===== */
+@media (max-width: 480px) {
+  .catalog {
+    padding: 12px 10px;
+  }
+
+  .catalog__title {
+    font-size: 20px;
+    margin: 12px 0;
+  }
+
+  .paginate {
+    flex-direction: column; /* Кнопки друг под другом */
+    gap: 10px;
+  }
+
+  .paginate__btn-min,
+  .paginate__btn-pls {
+    width: 100%;
+    max-width: 100%;
+    padding: 14px 20px;
+    font-size: 16px; /* Удобно нажимать */
+  }
 }

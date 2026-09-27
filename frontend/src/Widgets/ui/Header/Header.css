@@ -9,7 +9,7 @@
     border-radius: 12px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
     flex-wrap: wrap;
-    gap: 12px;
+    gap: 16px;
 }
 
 /* ===== Логотип ===== */
@@ -18,6 +18,7 @@
     font-weight: 700;
     color: #222;
     flex-shrink: 0;
+    white-space: nowrap;
 }
 
 /* ===== Блок поиска и фильтров ===== */
@@ -27,15 +28,14 @@
     align-items: center;
     gap: 10px;
     flex: 1;
-    max-width: 700px;
-    margin: 0 16px;
-    flex-wrap: wrap;
+    max-width: 800px;
+    flex-wrap: wrap; /* Позволяет элементам переноситься */
 }
 
 /* ===== Поле поиска ===== */
 .header__search-input {
-    flex: 1;
-    min-width: 120px;
+    flex: 1 1 200px; /* Растягивается, но не меньше 200px */
+    min-width: 150px;
     padding: 9px 14px;
     border: 1px solid #e0e0e0;
     border-radius: 8px;
@@ -162,18 +162,6 @@
     box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.2);
 }
 
-.header__sort-select option {
-    padding: 10px 16px;
-    font-size: 14px;
-    color: #333;
-    background-color: white;
-}
-
-.header__sort-select option:checked {
-    background-color: #007bff;
-    color: white;
-}
-
 /* ===== Фильтр по цене ===== */
 .header__price-filter {
     display: flex;
@@ -280,6 +268,7 @@
     font-size: 13px;
     cursor: pointer;
     transition: background-color 0.2s;
+    white-space: nowrap;
 }
 
 .header__auth-login {
@@ -313,6 +302,7 @@
     color: #1976d2;
     text-decoration: none;
     display: inline-block;
+    white-space: nowrap;
 }
 
 .header__auth-profile:hover {
@@ -370,17 +360,22 @@
     background-color: #125a9c;
 }
 
-/* ===== Адаптив для планшетов ===== */
+/* ===== Адаптив для планшетов (1024px) ===== */
 @media (max-width: 1024px) {
     .header {
         padding: 14px 18px;
-        gap: 10px;
+        gap: 12px;
     }
 
     .header__search {
-        max-width: 500px;
-        gap: 8px;
-        margin: 0 10px;
+        max-width: 100%;
+        margin: 0;
+        flex: 1 1 100%; /* Поиск занимает всю строку на планшетах */
+        order: 3; /* Переносим поиск под логотип и кнопки */
+    }
+
+    .header__logo {
+        font-size: 22px;
     }
 
     .header__sort-select {
@@ -399,102 +394,128 @@
         padding: 8px 12px;
     }
 
-    .header__logo {
-        font-size: 22px;
-    }
-
     .header__right {
         gap: 8px;
+        margin-left: auto; /* Прижимаем правую часть к краю */
     }
 }
 
-/* ===== Адаптив для телефонов ===== */
+/* ===== Адаптив для телефонов (768px) ===== */
 @media (max-width: 768px) {
     .header {
         flex-direction: column;
         align-items: stretch;
-        padding: 12px 16px;
-        gap: 12px;
+        padding: 16px;
+        gap: 16px;
     }
 
     .header__logo {
         text-align: center;
-        font-size: 22px;
+        font-size: 24px;
     }
 
     .header__search {
-        max-width: 100%;
-        margin: 0;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 8px;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+        order: 2;
     }
 
     .header__search-input {
         flex: 1 1 100%;
         min-width: unset;
+        font-size: 16px; /* Важно: 16px предотвращает зум на iOS */
+        padding: 12px 14px;
+    }
+
+    /* Элементы фильтров встают в ряд и переносятся */
+    .header__search > *:not(.header__search-input) {
+        flex: 1 1 auto;
     }
 
     .header__sort-select {
-        min-width: 110px;
-        font-size: 12px;
+        width: 100%;
+        min-width: unset;
+        font-size: 14px;
+        padding: 12px 30px 12px 14px;
     }
 
     .header__price-filter {
-        padding: 4px 6px 4px 10px;
+        width: 100%;
+        justify-content: center;
+        padding: 8px 12px;
     }
 
     .header__price-input {
-        width: 40px;
-        font-size: 12px;
+        width: 60px;
+        font-size: 14px;
+        padding: 8px 2px;
     }
 
+    .header__reset-btn {
+        width: 100%;
+        text-align: center;
+        padding: 12px;
+        font-size: 14px;
+    }
+
+    /* Правая часть (авторизация, корзина) */
     .header__right {
-        justify-content: center;
-        gap: 8px;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+        order: 3;
+        margin-left: 0;
     }
 
     .header__auth {
         justify-content: center;
+        flex-wrap: wrap;
     }
 
     .header__cart {
         justify-content: center;
+        flex-wrap: wrap;
     }
 
+    /* Кнопки становятся крупнее */
+    .header__auth-login,
+    .header__auth-logout,
+    .header__auth-profile,
+    .header__open,
+    .header__fav-btn {
+        padding: 12px 20px;
+        font-size: 14px;
+    }
+
+    .header__count {
+        font-size: 14px;
+    }
+
+    /* Выпадающий список категорий на мобильных */
     .header__category-list {
-        min-width: 200px;
+        min-width: 100%;
         grid-template-columns: 1fr;
-        left: 50%;
-        transform: translateX(-50%);
+        left: 0;
+        transform: none;
+        position: static; /* Или оставить absolute, но с width: 100% */
+        margin-top: 10px;
     }
 }
 
+/* ===== Очень маленькие экраны (480px) ===== */
 @media (max-width: 480px) {
-    .header__search {
-        gap: 6px;
+    .header {
+        padding: 12px;
     }
 
-    .header__sort-select {
-        min-width: 90px;
-        font-size: 11px;
-        padding: 6px 24px 6px 10px;
-        background-position: right 8px center;
+    .header__logo {
+        font-size: 20px;
     }
 
-    .header__price-input {
-        width: 35px;
-        font-size: 11px;
-        padding: 5px 2px;
-    }
-
-    .header__price-filter {
-        padding: 3px 4px 3px 8px;
-    }
-
-    .header__category-toggle {
-        font-size: 11px;
-        padding: 6px 10px;
+    .header__search-input {
+        font-size: 14px;
+        padding: 10px 12px;
     }
 
     .header__auth-login,
@@ -503,20 +524,12 @@
     .header__open,
     .header__fav-btn,
     .header__reset-btn {
-        font-size: 11px;
-        padding: 6px 10px;
+        font-size: 13px;
+        padding: 10px 16px;
     }
 
-    .header__count {
-        font-size: 12px;
-    }
-
-    .header__search-input {
-        font-size: 12px;
-        padding: 7px 10px;
-    }
-
-    .header__right {
-        gap: 6px;
+    .header__sort-select {
+        font-size: 13px;
+        padding: 10px 28px 10px 12px;
     }
 }
