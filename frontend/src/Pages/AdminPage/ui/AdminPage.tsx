@@ -46,9 +46,6 @@ export const AdminPage:React.FC<AdminPageProps> = ({user}) => {
 
         ordersFunc()
     }, [])
-    if (!user) {
-        return null
-    }
     useEffect(() => {
         if (activeTab === 'products') {
             async function loadProducts() {
@@ -65,6 +62,10 @@ export const AdminPage:React.FC<AdminPageProps> = ({user}) => {
             loadProducts()
         }
     }, [activeTab]);
+
+    if (!user) {
+        return null
+    }
 
     async function historyOfOrders(): Promise<OrderOut[]> {
         return authorizedFetch(`${API_BASE_URL}/api/order/all`, {method: 'GET'})
