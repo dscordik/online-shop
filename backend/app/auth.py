@@ -46,6 +46,15 @@ def get_current_user(token: str = Depends(oauth2_scheme), db:Session = Depends(g
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail='Неверный токен')
     return user
 
+def get_current_admin(current_user:User = Depends(get_current_user)) -> User:
+    if current_user.role != 'admin':
+        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail='Доступ запрещен')
+    return current_user
+
+@router.get('/admin/check')
+def admin_check(admin:User = Depends(get_current_admin)):
+    return {'message':'Статус подтвержден', 'email':admin.email, 'role':admin.role}
+
 def get_current_user_order(token: str = Depends(oauth2_scheme), db:Session = Depends(get_db)) -> User:
     try:
         payload = decode_token(token)

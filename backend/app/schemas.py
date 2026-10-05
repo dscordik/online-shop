@@ -34,6 +34,7 @@ class UserLogin(BaseModel):
 
 class UserOut(BaseModel):
     id: int
+    role: Literal['admin', 'user']
     email: EmailStr
     is_active: bool
     created_at: datetime
@@ -116,3 +117,20 @@ class FavoriteOut(BaseModel):
     created_at_favorite:datetime
 
     model_config = ConfigDict(from_attributes=True)
+
+class OrderStatusUpdate(BaseModel):
+    status:Literal['Оформляем', 'Собираем', 'Доставляем', 'Готов к получению']
+
+class ProductCreate(BaseModel):
+    title: str
+    price: int
+    image_url: str
+    category: str
+    description: str
+
+class ProductUpdate(BaseModel):
+    title: str | None = None
+    price: int | None = None
+    image_url: str | None = None
+    category: str | None = None
+    description: str | None = None

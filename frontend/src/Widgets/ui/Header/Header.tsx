@@ -42,6 +42,9 @@ export const Header: React.FC<HeaderProps> = ({total_count,onOpenCart, searchPro
                 {user !== null ? (
                     <div className="header__auth__div">
                         <Link to='/profile' className="header__auth-profile">Личный кабинет</Link>
+                        {user.role === 'admin' && (
+                            <Link to='/admin' className="header__admin-panel">Админ-панель</Link>
+                        )}
                         <button className="header__auth-logout" onClick={() => handleLogout()}>Выйти</button>
                     </div>
                 ) : (

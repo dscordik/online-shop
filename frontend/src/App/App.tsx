@@ -16,6 +16,7 @@ import {OrderPage} from "../Pages/OrderPage/ui/OrderPage";
 import {addFavorite, allFavorites, deleteFavorite} from "../Entities/user/model/favorite";
 import {FavoriteComponent} from "../Pages/Favorite/ui/Favorite";
 import {API_BASE_URL} from "../Shared/api/config";
+import AdminPage from "../Pages/AdminPage/ui/AdminPage";
 
 
 function App() {
@@ -232,6 +233,7 @@ function App() {
                 <Route path='/product/:id' element={<ProductPage addCart={addCart} addFavoriteProduct={addFavoriteProduct}/>}></Route>
                 <Route path='/order' element={<OrderPage cart={cart} clearCorzina={clearCorzina} total_price={total_price}/>}></Route>
                 <Route path='/favorites' element={<FavoriteComponent favorite={favorite} addCart={addCart} deleteFavoriteProduct={deleteFavoriteProduct} user={user}/>}></Route>
+                <Route path='/admin' element={<AdminPage user={user} handleLogout={handleLogout} handleAuthSuccess={handleAuthSuccess}/>}></Route>
             </Routes>
             {isCartOpen && (<CartModal cart={cart} onOpenCart={onOpenCart} removeFromCart={removeFromCart} minusCount={minusCount}
                                        addCount={addCount} total_price={total_price} total_count={total_count} clearCorzina={clearCorzina}/>)}

@@ -1,10 +1,10 @@
 from fastapi import APIRouter
 from fastapi.params import Depends
 from sqlalchemy.orm import Session
-from app.auth import get_current_user_order
+from app.auth import get_current_user_order, get_current_admin
 from app.database import get_db
 from app.models import User, Order, OrderItem
-from app.schemas import OrderOut, OrderCreate
+from app.schemas import OrderOut, OrderCreate, OrderStatusUpdate
 from starlette.exceptions import HTTPException
 from starlette import status
 
@@ -32,6 +32,22 @@ def orders(order: OrderCreate, db:Session = Depends(get_db), current_user: User 
         ))
     db.commit()
     return  new_order
+
+@router.get('/all', response_model=list[OrderOut])
+def get_all_orders(get_currents_orders:User = Depends(get_current_admin), db:Session = Depends(get_db)):
+    orders = db.query(Order).all()
+    return orders
+
+@router.patch('/{order_id}', response_model=OrderOut)
+def update_status_order(order_id:int, body:OrderStatusUpdate,current_user: User = Depends(get_current_admin), db:Session = Depends(get_db)):
+    order = db.query(Order).filter(Order.id == order_id).first()
+    if order is None:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail='Заказ не найден')
+    order.status = body.status
+    db.commit()
+    db.refresh(order)
+    return order
+
 
 @router.get('/me', response_model=list[OrderOut])
 def read_current_orders(get_orders: User | None = Depends(get_current_user_order),db: Session = Depends(get_db)):

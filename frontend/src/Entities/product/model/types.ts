@@ -69,3 +69,19 @@ export interface OrderOut {
     created_at_order:string,
     items:OrderItem[]
 }
+
+export interface ProductCreate{
+    title: string,
+    price: number,
+    image_url: string,
+    category: string,
+    description: string
+}
+
+export interface ProductUpdate {
+    title?: string
+    price?: number
+    image_url?: string
+    category?: string
+    description?: string
+}

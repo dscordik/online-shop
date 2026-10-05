@@ -13,6 +13,7 @@ from app.auth import router as auth_router
 from app.orders import router as order_router
 from app.favorites import router as favorite_router
 from app.seed import seed_db
+from app.admin_products import router as admin_router
 
 models.Base.metadata.create_all(bind=engine)
 seed_db()
@@ -33,6 +34,7 @@ app.add_middleware(
 app.include_router(auth_router)
 app.include_router(order_router)
 app.include_router(favorite_router)
+app.include_router(admin_router)
 @app.get("/")
 def read_root():
     return {"Hello": "World"}
