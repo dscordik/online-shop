@@ -120,6 +120,7 @@ export const AdminPage:React.FC<AdminPageProps> = ({user}) => {
                 setProducts([...products, newProduct])
             }
             setIsCreateModalOpen(false)
+            setEditingProduct(null)
         } catch (error) {
             if (error instanceof Error) {
                 setError(error.message)
@@ -153,6 +154,7 @@ export const AdminPage:React.FC<AdminPageProps> = ({user}) => {
                                 <div key={order.id} className="admin-orders__item">
                                     <div className="admin-orders__header">
                                         <span className="admin-orders__date">{order.created_at_order}</span>
+                                        <span className="admin-orders__customer">{order.first_name} {order.last_name} - {order.email}</span>
                                         <span className="admin-orders__status">{order.status}</span>
                                         <select value={order.status} onChange={(e) => handleStatusChange(order.id, e.target.value)} className="admin-orders__status-select">
                                             <option value='Оформляем'>Оформляем</option>
@@ -182,7 +184,7 @@ export const AdminPage:React.FC<AdminPageProps> = ({user}) => {
                 <div className="admin-products">
                     <div className="admin-products__header">
                         <h2 className="admin-products__title">Товары</h2>
-                        <button onClick={() => {setProductForms({title: '', price: '', image_url: '', category: '', description: ''});setIsCreateModalOpen(true);}} className="admin-products__add-btn">
+                        <button onClick={() => {setEditingProduct(null);setProductForms({title: '', price: '', image_url: '', category: '', description: ''});setIsCreateModalOpen(true);}} className="admin-products__add-btn">
                             Добавить товар
                         </button>
                     </div>
@@ -201,14 +203,15 @@ export const AdminPage:React.FC<AdminPageProps> = ({user}) => {
                                     <div className="admin-products__actions">
                                         <button
                                             onClick={() => {
-                                                setEditingProduct(product);
+                                                setEditingProduct(product)
                                                 setProductForms({
                                                     title: product.title,
                                                     price: String(product.price),
                                                     image_url: product.image_url,
                                                     category: product.category,
                                                     description: product.description
-                                                });
+                                                })
+                                                setIsCreateModalOpen(true)
                                             }}
                                             className="admin-products__edit-btn"
                                         >
