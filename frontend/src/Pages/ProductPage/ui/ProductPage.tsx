@@ -29,12 +29,12 @@ export const ProductPage:React.FC<ProductPageProps> = ({addCart, addFavoriteProd
             });
     }, [id]);
     if (loading) {
-        return<div>
+        return<div className="product-page__status">
             <span>Загрузка товара...</span>
         </div>
     }
     if (!product?.id) {
-        return <div>
+        return <div className="product-page__status">
             <span>Товар не найден</span>
         </div>
     }
@@ -50,9 +50,11 @@ export const ProductPage:React.FC<ProductPageProps> = ({addCart, addFavoriteProd
                     <p className="product-page__price">{product.price} Р</p>
                     <p className="product-page__category">Категория: {product.category}</p>
                     <p className='product-page__description'>{product.description}</p>
+                    <div className="product-page__actions">
+                        <button className='product-page__btn' onClick={() => addCart(product)}>Добавить в корзину</button>
+                        <button className='product-page__fav-btn' onClick={() => addFavoriteProduct(product?.id)}>Добавить в избранные</button>
+                    </div>
                 </div>
-                <button className='product-page__btn' onClick={() => addCart(product)}>Добавить в корзину</button>
-                <button className='product-page__fav-btn' onClick={() => addFavoriteProduct(product?.id)}>Добавить в избранные</button>
             </div>
         </div>
     )

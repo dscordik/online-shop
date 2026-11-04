@@ -1,76 +1,94 @@
+/* =====================================================================
+   БЛОК: profile-page — личный кабинет
+   Элементы: __card, __header, __title, __back, __info, __info-row,
+             __info-label, __info-value, __form, __field, __label, __input,
+             __error, __success, __submit, __orders, __orders-title,
+             __orders-empty, __order, __order-header, __order-date,
+             __order-status, __order-items, __order-item(-name|-count|
+             -price|-total), __order-total
+   ===================================================================== */
+
 .profile-page {
-    display: flex;
-    justify-content: center;
-    padding: 40px 20px;
+    max-width: 860px;
+    margin: 28px auto 0;
 }
 
 .profile-page__card {
-    width: 100%;
-    max-width: 480px;
-    background-color: #fff;
-    border-radius: 16px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-    padding: 32px 28px;
+    padding: 32px;
+    border-radius: var(--r-xl);
+    background: var(--c-surface);
+    color: var(--c-ink);
+    box-shadow: var(--sh-card);
 }
 
 .profile-page__header {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
     margin-bottom: 24px;
 }
 
 .profile-page__title {
-    font-size: 22px;
-    font-weight: 700;
-    color: #222;
-    margin: 0;
+    font-size: clamp(24px, 3vw, 32px);
+    font-weight: 800;
+    letter-spacing: -0.02em;
 }
 
 .profile-page__back {
-    font-size: 13px;
-    color: #1976d2;
+    color: var(--c-accent-dark);
+    font-size: 14px;
+    font-weight: 700;
     text-decoration: none;
 }
 
 .profile-page__back:hover {
-    text-decoration: underline;
+    color: var(--c-cta-dark);
 }
 
+/* ----- Данные ----- */
 .profile-page__info {
     display: flex;
     flex-direction: column;
-    gap: 8px;
-    background-color: #f5f8fc;
-    border-radius: 10px;
-    padding: 16px 18px;
-    margin-bottom: 28px;
+    gap: 4px;
+    margin-bottom: 26px;
+    padding: 8px 18px;
+    border-radius: var(--r-md);
+    background: var(--c-surface-2);
 }
 
 .profile-page__info-row {
     display: flex;
+    align-items: center;
     justify-content: space-between;
-    gap: 12px;
+    flex-wrap: wrap;
+    gap: 6px 16px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--c-line);
+}
+
+.profile-page__info-row:last-child {
+    border-bottom: none;
 }
 
 .profile-page__info-label {
-    font-size: 13px;
-    color: #777;
+    font-size: 14px;
+    color: var(--c-ink-soft);
 }
 
 .profile-page__info-value {
-    font-size: 14px;
-    font-weight: 600;
-    color: #333;
-    text-align: right;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    font-weight: 700;
+    overflow-wrap: anywhere;
 }
 
+/* ----- Форма ----- */
 .profile-page__form {
     display: flex;
     flex-direction: column;
     gap: 16px;
+    padding-bottom: 26px;
+    border-bottom: 1px dashed var(--c-line);
 }
 
 .profile-page__field {
@@ -81,169 +99,181 @@
 
 .profile-page__label {
     font-size: 13px;
-    font-weight: 600;
-    color: #555;
+    font-weight: 700;
+    color: var(--c-ink-soft);
 }
 
 .profile-page__input {
-    padding: 12px 14px;
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
-    font-size: 14px;
-    color: #333;
+    width: 100%;
+    height: 48px;
+    padding: 0 14px;
+    border: 1px solid var(--c-line);
+    border-radius: var(--r-md);
+    background: var(--c-surface-2);
+    color: var(--c-ink);
+    font-size: 16px;
     outline: none;
-    transition: border-color 0.2s;
+    transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
 }
 
 .profile-page__input:focus {
-    border-color: #1976d2;
+    border-color: var(--c-accent-dark);
+    background: #fff;
+    box-shadow: 0 0 0 3px rgba(45, 212, 255, 0.25);
+}
+
+.profile-page__error,
+.profile-page__success {
+    padding: 12px 16px;
+    border-radius: var(--r-md);
+    font-size: 14px;
+    font-weight: 600;
 }
 
 .profile-page__error {
-    background-color: #fdecea;
-    border: 1px solid #f5c6c2;
-    color: #d32f2f;
-    font-size: 13px;
-    padding: 10px 12px;
-    border-radius: 8px;
+    border: 1px solid #fecaca;
+    background: #fff5f5;
+    color: #b91c1c;
 }
 
 .profile-page__success {
-    background-color: #eaf7ec;
-    border: 1px solid #b8e0bd;
-    color: #2e7d32;
-    font-size: 13px;
-    padding: 10px 12px;
-    border-radius: 8px;
+    border: 1px solid #bbf7d0;
+    background: #f0fdf4;
+    color: #15803d;
 }
 
 .profile-page__submit {
-    margin-top: 4px;
-    padding: 12px 16px;
+    min-height: 52px;
+    padding: 12px 20px;
     border: none;
-    border-radius: 8px;
-    background-color: #1976d2;
+    border-radius: var(--r-md);
+    background: var(--g-cta);
+    box-shadow: var(--sh-cta);
     color: #fff;
-    font-weight: 600;
-    font-size: 15px;
+    font-size: 16px;
+    font-weight: 800;
     cursor: pointer;
-    transition: background-color 0.2s;
+    transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .profile-page__submit:hover {
-    background-color: #125a9c;
+    transform: translateY(-1px);
+    box-shadow: 0 12px 28px rgba(255, 106, 19, 0.55);
 }
 
-.product-page__description {
-    font-size: 16px;
-    line-height: 1.7;
-    color: #333;
-    margin: 16px 0;
-    padding: 16px 20px;
-    background: #f8f9fa;
-    border-radius: 10px;
-    border-left: 4px solid #007bff;
-    font-family: inherit;
-    word-wrap: break-word;
-    max-width: 600px;
-}
-
-.product-page__description:empty {
-    display: none;
-}
-
-@media (max-width: 768px) {
-    .product-page__description {
-        font-size: 14px;
-        line-height: 1.5;
-        padding: 12px 16px;
-        margin: 12px 0;
-        max-width: 100%;
-    }
-}
+/* ----- Заказы ----- */
 .profile-page__orders {
-    margin-top: 32px;
-    padding-top: 28px;
-    border-top: 1px solid #eee;
+    margin-top: 26px;
 }
 
 .profile-page__orders-title {
-    font-size: 18px;
-    font-weight: 700;
-    color: #222;
-    margin: 0 0 16px;
+    margin-bottom: 16px;
+    font-size: 22px;
+    font-weight: 800;
 }
 
 .profile-page__orders-empty {
-    font-size: 14px;
-    color: #777;
+    padding: 28px;
+    border-radius: var(--r-md);
+    background: var(--c-surface-2);
+    text-align: center;
+    color: var(--c-ink-mute);
 }
 
 .profile-page__order {
-    border: 1px solid #e5e5e5;
-    border-radius: 10px;
-    padding: 16px 18px;
-    margin-bottom: 16px;
+    margin-bottom: 14px;
+    overflow: hidden;
+    border: 1px solid var(--c-line);
+    border-radius: var(--r-md);
 }
 
 .profile-page__order-header {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    margin-bottom: 12px;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 12px 16px;
+    background: var(--c-surface-2);
 }
 
 .profile-page__order-date {
-    font-size: 13px;
-    color: #777;
+    font-size: 14px;
+    color: var(--c-ink-soft);
 }
 
 .profile-page__order-status {
+    padding: 4px 12px;
+    border-radius: var(--r-pill);
+    background: #fff0e6;
+    color: var(--c-cta-dark);
     font-size: 12px;
-    font-weight: 600;
-    color: #1976d2;
-    background-color: #f0f5fb;
-    padding: 4px 10px;
-    border-radius: 6px;
+    font-weight: 800;
 }
 
 .profile-page__order-items {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    margin-bottom: 12px;
+    padding: 4px 16px;
 }
 
 .profile-page__order-item {
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr;
-    gap: 8px;
-    font-size: 13px;
-    color: #333;
+    grid-template-columns: minmax(0, 1fr) 70px 100px 110px;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--c-line);
+}
+
+.profile-page__order-item:last-child {
+    border-bottom: none;
 }
 
 .profile-page__order-item-name {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    font-weight: 600;
+    overflow-wrap: anywhere;
 }
 
 .profile-page__order-item-count,
 .profile-page__order-item-price {
-    color: #777;
+    font-size: 14px;
     text-align: right;
+    color: var(--c-ink-soft);
 }
 
 .profile-page__order-item-total {
-    font-weight: 600;
+    font-weight: 800;
     text-align: right;
 }
 
 .profile-page__order-total {
+    padding: 12px 16px;
+    background: #0b1226;
+    color: #ff9a55;
+    font-size: 17px;
+    font-weight: 800;
     text-align: right;
-    font-weight: 700;
-    font-size: 15px;
-    color: #222;
-    padding-top: 8px;
-    border-top: 1px dashed #ddd;
+}
+
+@media (max-width: 640px) {
+    .profile-page {
+        margin-top: 18px;
+    }
+
+    .profile-page__card {
+        padding: 18px 14px;
+        border-radius: var(--r-lg);
+    }
+
+    .profile-page__order-item {
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 4px 8px;
+    }
+
+    .profile-page__order-item-name {
+        grid-column: 1 / -1;
+    }
+
+    .profile-page__order-item-count {
+        text-align: left;
+    }
 }

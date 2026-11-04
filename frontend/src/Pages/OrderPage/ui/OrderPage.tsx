@@ -92,7 +92,7 @@ export const OrderPage:React.FC<OrderPageProps> = ({cart, total_price, clearCorz
                 <span className="order-page__total-price">{total_price} ₽</span>
             </div>
             {error && <p className="order-page__error">{error}</p>}
-            {success && <p className="profile-page__success">{success}</p>}
+            {success && <p className="order-page__success">{success}</p>}
             <button className="order-page__clear-btn" onClick={() => clearCorzina()} type="button">Очистить корзину</button>
             {cart.length === 0 ? (
                 <p className="order-page__empty">Корзина пустая</p>

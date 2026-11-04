@@ -1,189 +1,265 @@
+/* =====================================================================
+   БЛОК: cart-modal — выезжающая корзина справа
+   Элементы: __content, __title, __close, __list, __item, __item-info,
+             __item-title, __item-price, __counter, __counter-btn,
+             __counter-value, __remove, __empty, __footer, __summary,
+             __total-count, __total-price, __clear, __order
+   ===================================================================== */
+
 .cart-modal {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
+    inset: 0;
+    z-index: 1000;
     display: flex;
     justify-content: flex-end;
-    z-index: 1000;
+    background: rgba(3, 6, 15, 0.65);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    animation: cart-modal-fade 0.2s ease;
 }
 
 .cart-modal__content {
-    background-color: #fff;
-    width: 100%;
-    max-width: 400px;
-    height: 100%;
-    padding: 24px;
+    position: relative;
     display: flex;
     flex-direction: column;
+    width: 100%;
+    max-width: 440px;
+    height: 100%;
+    padding: 24px;
     overflow-y: auto;
-    position: relative;
+    background: var(--c-surface);
+    color: var(--c-ink);
+    box-shadow: -20px 0 60px rgba(0, 0, 0, 0.5);
+    animation: cart-modal-slide 0.28s ease;
 }
 
 .cart-modal__title {
-    font-size: 22px;
-    font-weight: 700;
-    color: #333;
     margin-bottom: 20px;
+    padding-right: 48px;
+    font-size: 24px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--c-ink);
 }
 
 .cart-modal__close {
     position: absolute;
-    top: 20px;
-    right: 20px;
-    background: none;
+    top: 18px;
+    right: 18px;
+    width: 38px;
+    height: 38px;
     border: none;
-    font-size: 20px;
+    border-radius: 50%;
+    background: var(--c-surface-2);
+    color: var(--c-ink-soft);
+    font-size: 16px;
+    font-weight: 700;
     cursor: pointer;
-    color: #333;
+    transition: background 0.2s, color 0.2s;
+}
+
+.cart-modal__close:hover {
+    background: var(--c-cta);
+    color: #fff;
 }
 
 .cart-modal__list {
-    flex: 1;
     display: flex;
+    flex: 1;
     flex-direction: column;
-    gap: 16px;
+    gap: 12px;
 }
 
 .cart-modal__item {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
     gap: 12px;
-    padding-bottom: 12px;
-    border-bottom: 1px solid #eee;
+    padding: 14px;
+    border: 1px solid var(--c-line);
+    border-radius: var(--r-md);
+    background: var(--c-surface-2);
 }
 
 .cart-modal__item-info {
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 6px;
+    min-width: 0;
 }
 
 .cart-modal__item-title {
-    font-size: 14px;
-    color: #333;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.3;
+    color: var(--c-ink);
+    overflow-wrap: anywhere;
 }
 
 .cart-modal__item-price {
-    font-size: 14px;
-    font-weight: 700;
-    color: #333;
-}
-
-.cart-modal__remove {
-    background-color: #fff;
-    border: 1px solid #e0e0e0;
-    color: #d32f2f;
-    padding: 6px 10px;
-    border-radius: 6px;
-    font-size: 12px;
-    cursor: pointer;
-    white-space: nowrap;
-    transition: background-color 0.2s;
-}
-
-.cart-modal__remove:hover {
-    background-color: #fdecea;
-    border-color: #d32f2f;
-}
-
-.cart-modal__empty {
-    text-align: center;
-    color: #999;
-    font-size: 15px;
-    margin-top: 40px;
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--c-cta-dark);
 }
 
 .cart-modal__counter {
     display: flex;
     align-items: center;
-    gap: 10px;
-    margin-top: 4px;
+    gap: 6px;
+    margin-top: 2px;
 }
 
 .cart-modal__counter-btn {
-    width: 26px;
-    height: 26px;
-    border: 1px solid #e0e0e0;
-    background-color: #fff;
-    border-radius: 6px;
-    font-size: 16px;
+    display: grid;
+    place-items: center;
+    width: 32px;
+    height: 32px;
+    border: 1px solid var(--c-line);
+    border-radius: var(--r-sm);
+    background: #fff;
+    color: var(--c-ink);
+    font-size: 18px;
     font-weight: 700;
+    line-height: 1;
     cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #333;
-    transition: background-color 0.2s;
+    transition: background 0.2s, border-color 0.2s, color 0.2s;
 }
 
 .cart-modal__counter-btn:hover {
-    background-color: #f0f0f0;
+    border-color: var(--c-cta);
+    background: #fff4ec;
+    color: var(--c-cta-dark);
 }
 
 .cart-modal__counter-value {
+    min-width: 44px;
     font-size: 14px;
-    color: #333;
-    min-width: 40px;
+    font-weight: 700;
     text-align: center;
+    color: var(--c-ink);
 }
+
+.cart-modal__remove {
+    flex-shrink: 0;
+    padding: 8px 12px;
+    border: 1px solid #fecaca;
+    border-radius: var(--r-sm);
+    background: #fff;
+    color: var(--c-danger);
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+}
+
+.cart-modal__remove:hover {
+    background: var(--c-danger);
+    color: #fff;
+}
+
+.cart-modal__empty {
+    margin-top: 48px;
+    text-align: center;
+    font-size: 16px;
+    color: var(--c-ink-mute);
+}
+
+/* ----- Итог ----- */
 .cart-modal__footer {
-    border-top: 1px solid #eee;
-    padding-top: 16px;
-    margin-top: 16px;
     display: flex;
     flex-direction: column;
     gap: 12px;
+    margin-top: 18px;
+    padding-top: 18px;
+    border-top: 1px solid var(--c-line);
 }
 
 .cart-modal__summary {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
+    gap: 12px;
 }
 
 .cart-modal__total-count {
     font-size: 14px;
-    color: #666;
+    color: var(--c-ink-soft);
 }
 
 .cart-modal__total-price {
-    font-size: 18px;
-    font-weight: 700;
-    color: #333;
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--c-ink);
 }
 
 .cart-modal__clear {
+    min-height: 44px;
     padding: 10px 16px;
-    border: none;
-    border-radius: 8px;
-    background-color: #e53935;
-    color: white;
-    font-weight: 600;
+    border: 1px solid #fecaca;
+    border-radius: var(--r-md);
+    background: #fff5f5;
+    color: var(--c-danger);
     font-size: 14px;
+    font-weight: 700;
     cursor: pointer;
-    transition: background-color 0.2s;
+    transition: background 0.2s, color 0.2s;
 }
 
 .cart-modal__clear:hover {
-    background-color: #c62828;
+    background: var(--c-danger);
+    color: #fff;
 }
+
 .cart-modal__order {
     width: 100%;
-    padding: 10px 16px;
+    min-height: 52px;
+    padding: 12px 16px;
     border: none;
-    border-radius: 8px;
-    background-color: #67e535;
-    color: white;
-    font-weight: 600;
-    font-size: 14px;
+    border-radius: var(--r-md);
+    background: var(--g-cta);
+    box-shadow: var(--sh-cta);
+    color: #fff;
+    font-size: 16px;
+    font-weight: 800;
     cursor: pointer;
-    transition: background-color 0.2s;
+    transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .cart-modal__order:hover {
-    background-color: #5dc628;
+    transform: translateY(-1px);
+    box-shadow: 0 12px 28px rgba(255, 106, 19, 0.55);
+}
+
+@keyframes cart-modal-fade {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes cart-modal-slide {
+    from { transform: translateX(40px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+/* ===== Телефоны: корзина на весь экран ===== */
+@media (max-width: 520px) {
+    .cart-modal__content {
+        max-width: none;
+        padding: 18px 14px;
+    }
+
+    .cart-modal__close {
+        top: 14px;
+        right: 14px;
+    }
+
+    .cart-modal__item {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .cart-modal__remove {
+        padding: 10px 12px;
+    }
 }

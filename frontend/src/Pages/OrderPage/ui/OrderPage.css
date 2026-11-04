@@ -1,371 +1,252 @@
-/* ===== Блок: страница оформления заказа ===== */
+
 .order-page {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 30px 20px 50px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: #1a1a2e;
+    max-width: 860px;
+    margin: 28px auto 0;
+    padding: 32px;
+    border-radius: var(--r-xl);
+    background: var(--c-surface);
+    color: var(--c-ink);
+    box-shadow: var(--sh-card);
 }
 
-/* ===== Элемент: ссылка "В каталог товаров" ===== */
 .order-page__back {
-    display: inline-block;
-    margin-bottom: 30px;
-    padding: 10px 24px;
-    color: #1976d2;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 18px;
+    color: var(--c-accent-dark);
+    font-size: 14px;
+    font-weight: 700;
     text-decoration: none;
-    font-size: 15px;
-    font-weight: 500;
-    border: 1px solid #1976d2;
-    border-radius: 30px;
-    transition: all 0.3s ease;
+}
+
+.order-page__back::before {
+    content: '←';
 }
 
 .order-page__back:hover {
-    background-color: #1976d2;
-    color: white;
-    box-shadow: 0 4px 15px rgba(25, 118, 210, 0.3);
+    color: var(--c-cta-dark);
 }
 
-/* ===== Элемент: заголовок страницы ===== */
 .order-page__title {
-    font-size: 28px;
-    font-weight: 700;
-    color: #1a1a2e;
-    margin-bottom: 25px;
+    margin-bottom: 22px;
+    font-size: clamp(24px, 3vw, 32px);
+    font-weight: 800;
+    letter-spacing: -0.02em;
 }
 
-/* ===== Элемент: блок с товарами ===== */
+/* ----- Список товаров ----- */
 .order-page__items {
-    background: #f8faff;
-    border-radius: 16px;
-    padding: 20px 24px;
-    margin-bottom: 25px;
-    border: 1px solid #e8edf5;
+    overflow: hidden;
+    border: 1px solid var(--c-line);
+    border-radius: var(--r-md);
 }
 
-/* ===== Элемент: один товар ===== */
 .order-page__item {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 70px 110px 120px;
     align-items: center;
-    padding: 12px 0;
-    border-bottom: 1px solid #eef3fa;
     gap: 12px;
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--c-line);
+}
+
+.order-page__item:nth-child(even) {
+    background: var(--c-surface-2);
 }
 
 .order-page__item:last-child {
     border-bottom: none;
 }
 
-/* ===== Элемент: название товара ===== */
 .order-page__item-name {
-    font-size: 15px;
-    color: #1a1a2e;
-    font-weight: 500;
-    flex: 2;
+    font-weight: 600;
+    overflow-wrap: anywhere;
 }
 
-/* ===== Элемент: количество товара ===== */
-.order-page__item-count {
-    font-size: 14px;
-    color: #555;
-    flex: 1;
-    text-align: center;
-}
-
-/* ===== Элемент: цена за штуку ===== */
+.order-page__item-count,
 .order-page__item-price {
     font-size: 14px;
-    color: #555;
-    flex: 1;
-    text-align: center;
-}
-
-/* ===== Элемент: итог по товару ===== */
-.order-page__item-total {
-    font-size: 16px;
-    font-weight: 700;
-    color: #1976d2;
-    flex: 1;
+    color: var(--c-ink-soft);
     text-align: right;
-    white-space: nowrap;
 }
 
-/* ===== Элемент: общая сумма ===== */
+.order-page__item-total {
+    font-weight: 800;
+    text-align: right;
+}
+
 .order-page__total {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    font-size: 22px;
-    font-weight: 700;
-    color: #1a1a2e;
-    padding: 16px 24px;
-    background: #eaf2fa;
-    border-radius: 12px;
-    margin-bottom: 25px;
+    justify-content: space-between;
+    margin-top: 18px;
+    padding: 18px 20px;
+    border-radius: var(--r-md);
+    background: #0b1226;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 600;
 }
 
 .order-page__total-price {
-    color: #1976d2;
-    font-size: 26px;
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: #ff9a55;
 }
 
-/* ===== Элемент: кнопка "Очистить корзину" ===== */
 .order-page__clear-btn {
-    padding: 8px 20px;
-    background: transparent;
-    color: #d32f2f;
-    border: 1px solid #f5c6c2;
-    border-radius: 8px;
+    margin-top: 14px;
+    padding: 10px 18px;
+    border: 1px solid #fecaca;
+    border-radius: var(--r-md);
+    background: #fff5f5;
+    color: var(--c-danger);
     font-size: 14px;
-    font-weight: 500;
+    font-weight: 700;
     cursor: pointer;
-    transition: all 0.3s ease;
-    margin-bottom: 25px;
+    transition: background 0.2s, color 0.2s;
 }
 
 .order-page__clear-btn:hover {
-    background: #fdecea;
-    border-color: #d32f2f;
+    background: var(--c-danger);
+    color: #fff;
 }
 
-/* ===== Элемент: форма ===== */
+/* ----- Форма ----- */
 .order-page__form {
-    background: white;
-    border-radius: 16px;
-    padding: 28px 30px;
-    border: 1px solid #e8edf5;
-    box-shadow: 0 4px 20px rgba(25, 118, 210, 0.06);
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+    margin-top: 26px;
+    padding-top: 26px;
+    border-top: 1px dashed var(--c-line);
 }
 
-/* ===== Элемент: группа полей ===== */
 .order-page__form-group {
-    margin-bottom: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
 }
 
-/* ===== Элемент: подпись к полю ===== */
+/* Адрес и кнопка — на всю ширину */
+.order-page__form-group:last-of-type,
+.order-page__submit-btn {
+    grid-column: 1 / -1;
+}
+
 .order-page__label {
-    display: block;
-    font-size: 14px;
-    font-weight: 600;
-    color: #333;
-    margin-bottom: 6px;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--c-ink-soft);
 }
 
-/* ===== Элемент: поле ввода ===== */
 .order-page__input {
     width: 100%;
-    padding: 12px 16px;
-    border: 1px solid #dce3ed;
-    border-radius: 10px;
-    font-size: 15px;
-    color: #1a1a2e;
+    height: 48px;
+    padding: 0 14px;
+    border: 1px solid var(--c-line);
+    border-radius: var(--r-md);
+    background: var(--c-surface-2);
+    color: var(--c-ink);
+    font-size: 16px;
     outline: none;
-    transition: all 0.3s ease;
-    background: #fafcff;
-    box-sizing: border-box;
+    transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
 }
 
 .order-page__input:focus {
-    border-color: #1976d2;
-    box-shadow: 0 0 0 3px rgba(25, 118, 210, 0.15);
-    background: white;
+    border-color: var(--c-accent-dark);
+    background: #fff;
+    box-shadow: 0 0 0 3px rgba(45, 212, 255, 0.25);
 }
 
 .order-page__input::placeholder {
-    color: #b0b8c8;
+    color: var(--c-ink-mute);
 }
 
-/* ===== Элемент: кнопка отправки ===== */
 .order-page__submit-btn {
-    width: 100%;
-    padding: 14px;
-    background: linear-gradient(135deg, #1976d2, #1565c0);
-    color: white;
+    min-height: 56px;
+    padding: 14px 20px;
     border: none;
-    border-radius: 12px;
-    font-size: 18px;
-    font-weight: 700;
+    border-radius: var(--r-md);
+    background: var(--g-cta);
+    box-shadow: var(--sh-cta);
+    color: #fff;
+    font-size: 17px;
+    font-weight: 800;
     cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 20px rgba(25, 118, 210, 0.3);
-    margin-top: 15px;
+    transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .order-page__submit-btn:hover {
-    background: linear-gradient(135deg, #1565c0, #0d47a1);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 30px rgba(25, 118, 210, 0.4);
+    transform: translateY(-1px);
+    box-shadow: 0 12px 28px rgba(255, 106, 19, 0.55);
 }
 
 .order-page__submit-btn:active {
-    transform: scale(0.98);
+    transform: scale(0.99);
 }
 
-/* ===== Элемент: сообщение об ошибке ===== */
-.order-page__error {
-    color: #d32f2f;
-    background: #ffebee;
-    padding: 12px 18px;
-    border-radius: 10px;
-    font-size: 14px;
-    margin-bottom: 18px;
-    border-left: 4px solid #d32f2f;
-}
-
-/* ===== Элемент: сообщение об успехе ===== */
+/* ----- Сообщения ----- */
+.order-page__error,
 .order-page__success {
-    color: #2e7d32;
-    background: #e8f5e9;
-    padding: 16px 20px;
-    border-radius: 12px;
-    font-size: 18px;
+    margin-top: 16px;
+    padding: 12px 16px;
+    border-radius: var(--r-md);
+    font-size: 14px;
     font-weight: 600;
-    margin: 20px 0;
-    border-left: 4px solid #2e7d32;
-    text-align: center;
 }
 
-/* ===== Элемент: корзина пуста ===== */
+.order-page__error {
+    border: 1px solid #fecaca;
+    background: #fff5f5;
+    color: #b91c1c;
+}
+
+.order-page__success {
+    border: 1px solid #bbf7d0;
+    background: #f0fdf4;
+    color: #15803d;
+}
+
 .order-page__empty {
+    margin-top: 26px;
+    padding: 28px;
+    border-radius: var(--r-md);
+    background: var(--c-surface-2);
     text-align: center;
-    font-size: 20px;
-    color: #888;
-    padding: 60px 20px;
+    color: var(--c-ink-mute);
 }
 
-/* ===== Адаптивность ===== */
-@media (max-width: 768px) {
+@media (max-width: 640px) {
     .order-page {
-        padding: 20px 15px;
+        margin-top: 18px;
+        padding: 18px 14px;
+        border-radius: var(--r-lg);
     }
 
-    .order-page__items {
-        padding: 16px;
-    }
-
+    /* Строка товара: название сверху, цифры под ним */
     .order-page__item {
-        flex-wrap: wrap;
-        gap: 4px;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 6px 10px;
+        padding: 14px;
     }
 
     .order-page__item-name {
-        flex: 1 1 100%;
-        font-size: 14px;
+        grid-column: 1 / -1;
     }
 
-    .order-page__item-count,
-    .order-page__item-price {
-        flex: 1;
-        font-size: 13px;
+    .order-page__item-count {
         text-align: left;
     }
 
-    .order-page__item-total {
-        flex: 1;
-        font-size: 15px;
-        text-align: right;
-    }
-
-    .order-page__total {
-        font-size: 18px;
-        padding: 14px 18px;
-        flex-wrap: wrap;
-        gap: 8px;
+    .order-page__form {
+        grid-template-columns: 1fr;
     }
 
     .order-page__total-price {
-        font-size: 22px;
-    }
-
-    .order-page__form {
-        padding: 20px 16px;
-    }
-
-    .order-page__title {
-        font-size: 22px;
-    }
-
-    .order-page__submit-btn {
-        font-size: 16px;
-        padding: 12px;
+        font-size: 24px;
     }
 }
 
-@media (max-width: 480px) {
-    .order-page {
-        padding: 15px 10px;
-    }
-
-    .order-page__items {
-        padding: 12px;
-    }
-
-    .order-page__item {
-        flex-direction: column;
-        align-items: stretch;
-        gap: 4px;
-        padding: 10px 0;
-    }
-
-    .order-page__item-name {
-        font-size: 13px;
-        flex: unset;
-    }
-
-    .order-page__item-count,
-    .order-page__item-price {
-        font-size: 12px;
-        text-align: left;
-        flex: unset;
-    }
-
-    .order-page__item-total {
-        font-size: 14px;
-        text-align: right;
-        flex: unset;
-    }
-
-    .order-page__total {
-        font-size: 16px;
-        flex-direction: column;
-        text-align: center;
-        padding: 12px 16px;
-    }
-
-    .order-page__total-price {
-        font-size: 20px;
-    }
-
-    .order-page__form {
-        padding: 16px 12px;
-    }
-
-    .order-page__input {
-        font-size: 14px;
-        padding: 10px 14px;
-    }
-
-    .order-page__submit-btn {
-        font-size: 15px;
-        padding: 12px;
-    }
-
-    .order-page__back {
-        font-size: 13px;
-        padding: 8px 16px;
-    }
-
-    .order-page__title {
-        font-size: 20px;
-        margin-bottom: 18px;
-    }
-
-    .order-page__clear-btn {
-        font-size: 13px;
-        padding: 6px 16px;
-        width: 100%;
-        text-align: center;
-    }
-}

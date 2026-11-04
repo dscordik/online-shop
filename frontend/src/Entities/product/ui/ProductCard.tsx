@@ -17,17 +17,24 @@ function ProductCard({product, addCart, addFavoriteProduct, isFavorite, user, on
     };
 
     return (
-        <div className="product-card">
-            <img className="product-card__image" src={product.image_url} alt={product.title}/>
-            <Link to={`/product/${product.id}`}><h3 className="product-card__title">{product.title}</h3></Link>
-            <p className="product-card__price">{product.price} ₽</p>
-            <button onClick={handleFavoriteClick} className="favorite-btn">
-                {isFavorite ? 'Убрать из избранных' : 'Добавить в избранные'}
-            </button>
-            <button className="product-card__button" onClick={() => addCart(product)}>
-                Добавить в корзину
-            </button>
-        </div>
+        <article className="product-card">
+            <Link to={`/product/${product.id}`} className="product-card__media">
+                <img className="product-card__image" src={product.image_url} alt={product.title} loading="lazy"/>
+            </Link>
+            <div className="product-card__body">
+                <span className="product-card__category">{product.category}</span>
+                <Link to={`/product/${product.id}`} className="product-card__link"><h3 className="product-card__title">{product.title}</h3></Link>
+                <p className="product-card__price">{product.price} ₽</p>
+            </div>
+            <div className="product-card__actions">
+                <button className="product-card__btn product-card__btn--cta" onClick={() => addCart(product)}>
+                    Добавить в корзину
+                </button>
+                <button onClick={handleFavoriteClick} className={`product-card__btn product-card__btn--fav ${isFavorite ? 'product-card__btn--active' : ''}`}>
+                    {isFavorite ? 'Убрать из избранных' : 'Добавить в избранные'}
+                </button>
+            </div>
+        </article>
     )
 }
 
