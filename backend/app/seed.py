@@ -1,5 +1,13 @@
 from app.database import SessionLocal
-from app.models import Product
+import os
+from app.database import SessionLocal
+from app.models import Product, User
+from app.security import hash_password
+
+# Демо-админ: создаётся автоматически при старте сервера.
+# Для реального магазина задайте свои значения в .env (ADMIN_EMAIL / ADMIN_PASSWORD).
+ADMIN_EMAIL = os.getenv('ADMIN_EMAIL', 'admin@misha-store.ru')
+ADMIN_PASSWORD = os.getenv('ADMIN_PASSWORD', 'admin123')
 
 products_data = [
     {
@@ -172,10 +180,28 @@ products_data = [
     },
 ]
 
+def check_admin(db):
+    admin = db.query(User).filter(User.email == ADMIN_EMAIL).first()
+    if admin is None:
+        db.add(User(
+            email=ADMIN_EMAIL,
+            hashed_password=hash_password(ADMIN_PASSWORD),
+            role='admin',
+        ))
+        db.commit()
+        print(f'Админ создан: {ADMIN_EMAIL} / {ADMIN_PASSWORD}')
+    elif admin.role != 'admin':
+        admin.role = 'admin'
+        db.commit()
+        print(f'Пользователю {ADMIN_EMAIL} выдана роль admin')
+    else:
+        print('Админ уже существует, пропускаем')
+
 def seed_db():
     db = SessionLocal()
 
     try:
+        check_admin(db)
         added = 0
         for item in products_data:
             if not db.query(Product).filter(Product.title == item['title']).first():

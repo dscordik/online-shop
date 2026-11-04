@@ -1,3 +1,11 @@
+/* =====================================================================
+   БЛОК: product-card — карточка товара
+   Элементы: __media, __image, __body, __category, __link, __title,
+             __price, __actions, __btn
+   Модификаторы кнопки: --cta (в корзину), --fav (избранное),
+                        --active (уже в избранном), --danger (удалить)
+   Используется и в каталоге, и на странице «Избранное».
+   ===================================================================== */
 
 .product-card {
     display: flex;
@@ -157,19 +165,12 @@
 
 /* ===== Планшеты ===== */
 @media (max-width: 1024px) {
-    .product-card__image {
-        height: 200px;
-    }
-}
-
-/* ===== Телефоны ===== */
-@media (max-width: 768px) {
     .product-card__media {
-        padding: 14px;
+        padding: 12px;
     }
 
     .product-card__image {
-        height: 190px;
+        height: 170px;
     }
 
     .product-card__body {
@@ -177,20 +178,66 @@
     }
 
     .product-card__title {
-        min-height: 0;
-        font-size: 16px;
+        font-size: 15px;
     }
 
     .product-card__price {
-        font-size: 23px;
+        font-size: 22px;
     }
 
     .product-card__actions {
         padding: 14px;
     }
+}
+
+/* ===== Телефоны: компактные карточки (2 в ряд) ===== */
+@media (max-width: 768px) {
+    .product-card {
+        border-radius: var(--r-md);
+    }
+
+    .product-card:hover {
+        transform: none;
+    }
+
+    .product-card__media {
+        padding: 8px;
+    }
+
+    .product-card__image {
+        height: 120px;
+    }
+
+    .product-card__body {
+        gap: 4px;
+        padding: 10px 10px 0;
+    }
+
+    .product-card__category {
+        padding: 2px 8px;
+        font-size: 9px;
+    }
+
+    .product-card__title {
+        min-height: 2.7em;
+        font-size: 13px;
+        line-height: 1.35;
+    }
+
+    .product-card__price {
+        font-size: 17px;
+    }
+
+    .product-card__actions {
+        gap: 6px;
+        padding: 10px;
+    }
 
     .product-card__btn {
-        min-height: 48px; /* удобно попадать пальцем */
-        font-size: 15px;
+        min-height: 40px;
+        padding: 8px 6px;
+        border-radius: var(--r-sm);
+        font-size: 12px;
+        line-height: 1.2;
     }
 }

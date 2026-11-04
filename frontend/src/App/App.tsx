@@ -75,14 +75,23 @@ function App() {
             TOKENS()
         }
     }, []);
+
     useEffect(() => {
-        setCurrentPage(currentPage)
+        const mq = window.matchMedia('(max-width: 768px)')
+        const update = () => setItemsPearPage(mq.matches ? 6 : 9)
+        update()
+        mq.addEventListener('change', update)
+        return () => mq.removeEventListener('change', update)
+    }, []);
+    useEffect(() => {
+        setCurrentPage(1)
     }, [
         minPrice,
         bigPrice,
         sortCategories,
         selectCategory,
         searchProducts,
+        itemsPearPage,
     ]);
 
     function resetFilters() {
@@ -122,39 +131,39 @@ function App() {
         setFavorite(delfav)
     }
 
-     function addCart(product: Product) {
-         const arr = cart.find((item) => item.id === product.id)
-         if (arr) {
-             setCart(cart.map((item) => {
-                 if (item.id === product.id) {
-                     return {...item, count: item.count + 1}
-                 } else {
-                     return item
-                 }}))
-         } else {
-             setCart([...cart, {...product, count:1}])}
+    function addCart(product: Product) {
+        const arr = cart.find((item) => item.id === product.id)
+        if (arr) {
+            setCart(cart.map((item) => {
+                if (item.id === product.id) {
+                    return {...item, count: item.count + 1}
+                } else {
+                    return item
+                }}))
+        } else {
+            setCart([...cart, {...product, count:1}])}
     }
 
     function clearCorzina() {
-         setCart([])
+        setCart([])
     }
 
     function onOpenCart() {
-         setIsCartOpen(false);
+        setIsCartOpen(false);
     }
 
     function removeFromCart(id:number) {
-         setCart(cart.filter((item) => item.id !== id))
+        setCart(cart.filter((item) => item.id !== id))
     }
 
     function addCount(id:number) {
-         setCart(cart.map((item) => {
-             if (item.id === id) {
-                 return {...item, count:item.count + 1}
-             } else {
-                 return item
-             }
-         }))
+        setCart(cart.map((item) => {
+            if (item.id === id) {
+                return {...item, count:item.count + 1}
+            } else {
+                return item
+            }
+        }))
     }
 
     function minusCount(id:number) {
@@ -173,9 +182,7 @@ function App() {
     }
 
     const total_price = cart.reduce((sum, b) => sum + b.price * b.count, 0)
-
     const total_count = cart.reduce((sum, b) => sum + b.count,0)
-
     const uniqCategory = [...new Set(products.map((item) => item.category))]
 
     const filteredProducts = products.filter((item) => item.title.toLowerCase().includes(searchProducts.toLowerCase()) &&

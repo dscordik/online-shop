@@ -1,21 +1,3 @@
-/* =====================================================================
-   БЛОК: header — шапка магазина (тёмное «стекло»)
-   Структура:
-     header
-       header__top
-         header__logo (__logo-mark, __logo-text, __logo-accent)
-         header__search (__search-icon, __search-input)
-         header__auth
-         header__shortcuts            ← избранное + корзина
-           header__btn (--ghost | --accent | --cta | --danger)
-             header__btn-icon, header__btn-text (--optional | --desktop), header__badge
-       header__filters
-         header__category (__category-toggle, __category-list, __category-item)
-         header__sort (__sort-select)
-         header__price-filter (__price-input, __price-separator, __price-currency)
-         header__reset-btn
-   ===================================================================== */
-
 .header {
     position: relative;
     z-index: 30;
@@ -594,8 +576,10 @@
     .header__category-list {
         grid-template-columns: 1fr;
     }
+}
 
-    /* В корзине остаётся иконка + счётчик, чтобы всё влезло в одну строку */
+/* В корзине остаётся иконка + счётчик, чтобы лого и кнопки были в одной строке */
+@media (max-width: 560px) {
     .header__shortcuts .header__btn--cta .header__btn-text {
         display: none;
     }
